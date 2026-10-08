@@ -29,12 +29,12 @@ make re      # rebuilds the whole project
 ### Usage
 
 ```bash
-./cub3D path_to_scene_description_file
+./cub3D scene_description_file
 ```
 
 | Argument | Description |
 |---|---|
-| `path_to_scene_description_file` | A .cub file containing the file paths for wall textures, floor and ceiling colors, and the maze map |
+| `scene_description_file` | A .cub file containing the file paths for wall textures, floor and ceiling colors, and the maze map |
 
 #### Example
 
