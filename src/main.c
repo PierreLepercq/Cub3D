@@ -6,14 +6,13 @@
 /*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:16:00 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/08 18:13:29 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/10/12 19:23:59 by plepercq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-
-
+/*
 void	params_init(t_params *params)
 {
 	params->map = NULL;
@@ -30,15 +29,16 @@ void	params_get(t_params *params, char *file)
 	map_set(file, params);
 	walls_set(file, params);
 }
+*/
 
 int	main(int argc, char **argv)
 {
-	t_params	params;
+	(void)argv;
 
 	if (argc != 2)
-		return (ft_putstr_fd(WRONG_ARG_COUNT, 2), 0);
-	if (!is_file_correct(argv[1]))
-		return (0);
-	params_init(&params);
-	cub3d(params);
+	{
+		ft_putstr_fd(WRONG_ARG_COUNT, 2);
+		return (1);
+	}
+	return (0);
 }
