@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+         #
+#    By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/10/08 16:18:19 by plepercq          #+#    #+#              #
-#    Updated: 2026/10/12 18:53:17 by llepesqu         ###   ########.fr        #
+#    Updated: 2026/10/12 19:29:26 by plepercq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,12 +33,16 @@ DIR_SRC		= src
 DIR_OBJ		= obj
 DIR_INC		= include
 
-FILES		= main
+DIR_UTILS	= utils
+UTILS		= ft_strlen ft_putstr_fd
+
+FILES		= 	main \
+				$(addprefix $(DIR_UTILS)/, $(UTILS))
 
 SRCS		= $(addprefix $(DIR_SRC)/, $(addsuffix .c, $(FILES)))
 OBJS		= $(addprefix $(DIR_OBJ)/, $(addsuffix .o, $(FILES)))
 INCS 		= -I $(DIR_INC) -I $(MLX_DIR)
-LINKS		=
+LINKS		= $(MLX_FLAGS)
 
 MLX_DIR     = minilibx-linux
 MLX_URL     = https://github.com/42Paris/minilibx-linux
@@ -59,9 +63,10 @@ clean:
 
 fclean:
 	@$(RM) -vf $(NAME) $(LOG_FILE)
+	@$(RM) -vdf $(addprefix $(DIR_OBJ)/, $(DIR_UTILS))
 	@$(RM) -vdf $(OBJS) $(DIR_OBJ)
-	@echo -e "- ${_GREEN}Full clean${_END}\n"
 	@$(RM) -vrf $(MLX_DIR)
+	@echo -e "- ${_GREEN}Full clean${_END}\n"
 
 re: fclean all
 
