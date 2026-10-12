@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+         #
+#    By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/10/08 16:18:19 by plepercq          #+#    #+#              #
-#    Updated: 2026/10/08 16:24:53 by plepercq         ###   ########.fr        #
+#    Updated: 2026/10/12 18:53:17 by llepesqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,14 +37,18 @@ FILES		= main
 
 SRCS		= $(addprefix $(DIR_SRC)/, $(addsuffix .c, $(FILES)))
 OBJS		= $(addprefix $(DIR_OBJ)/, $(addsuffix .o, $(FILES)))
-INCS 		= -I $(DIR_INC)
+INCS 		= -I $(DIR_INC) -I $(MLX_DIR)
 LINKS		=
+
+MLX_DIR     = minilibx-linux
+MLX_URL     = https://github.com/42Paris/minilibx-linux
+MLX_FLAGS   = -L$(MLX_DIR) -lmlx -lX11 -lXext
 
 CMD_TEST	= ./$(NAME) ./themes/doom.cub
 LOG_FILE	= logs
 
 #	Rules
-all: $(NAME)
+all: $(MLX_DIR) $(NAME)
 	$(CC) $(CFLAGS) $(INCS) -o $(NAME) $(OBJS) $(LINKS)
 	@echo -e "- ${_CYAN}link ${_WHITE}: ${_GREEN}OK${_END}\n"
 	@echo -e "> ${_GREEN}Program name ${_WHITE}: ${_BOLD}$(NAME)${_END}\n"
@@ -57,6 +61,7 @@ fclean:
 	@$(RM) -vf $(NAME) $(LOG_FILE)
 	@$(RM) -vdf $(OBJS) $(DIR_OBJ)
 	@echo -e "- ${_GREEN}Full clean${_END}\n"
+	@$(RM) -vrf $(MLX_DIR)
 
 re: fclean all
 
@@ -72,6 +77,10 @@ test: fclean $(NAME)
 
 $(NAME): $(OBJS)
 	@echo -e "- ${_CYAN}compilation and assembly ${_WHITE}: ${_GREEN}OK${_END}\n"
+
+$(MLX_DIR):
+	git clone $(MLX_URL) $(MLX_DIR)
+	make -C $(MLX_DIR)
 
 $(DIR_OBJ)/%.o: $(DIR_SRC)/%.c
 	@mkdir -vp $(dir $@)
