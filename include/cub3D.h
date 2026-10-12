@@ -6,7 +6,7 @@
 /*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:25:23 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/08 18:12:28 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/10/12 19:23:12 by plepercq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,9 @@ typedef struct s_game
 	char	*wall_e;
 	char	**textures;
 }	t_game;
+
+//	UTILS
+size_t	ft_strlen(const char *s);
+void	ft_putstr_fd(const char *s, int fd);
 
 #endif
