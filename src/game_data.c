@@ -6,13 +6,13 @@
 /*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 17:26:15 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/12 19:57:44 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/10/15 15:47:41 by plepercq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	game_data_init(t_game *g)
+void	game_init(t_game *g)
 {
 	g->map = NULL;
 	g->textures = NULL;
