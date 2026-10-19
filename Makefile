@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+         #
+#    By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/10/08 16:18:19 by plepercq          #+#    #+#              #
-#    Updated: 2026/10/19 15:43:28 by plepercq         ###   ########.fr        #
+#    Updated: 2026/10/19 20:34:26 by llepesqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ DIR_OBJ		= obj
 DIR_INC		= include
 
 DIR_UTILS	= utils
-UTILS		= ft_strlen ft_putstr_fd
+UTILS		= ft_strlen ft_putstr_fd ft_bzero ft_memset ft_error
 
 FILES		= 	main \
 				$(addprefix $(DIR_UTILS)/, $(UTILS))

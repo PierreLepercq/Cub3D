@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 17:11:58 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/12 19:21:53 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/10/19 20:22:48 by llepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	ft_putstr_fd(const char *s, int fd)
+void	ft_putstr_fd(int fd, const char *s)
 {
 	write(fd, s, ft_strlen(s));
 }

@@ -6,7 +6,7 @@
 /*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:25:23 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/19 22:42:33 by pierre_lepe      ###   ########.fr       */
+/*   Updated: 2026/10/19 23:03:59 by pierre_lepe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,15 @@ typedef struct s_game
 	char	*wall_w;
 	char	*wall_e;
 	char	**textures;
+	t_frame	frame;
 }	t_game;
 
 //	UTILS
 size_t	ft_strlen(const char *s);
-void	ft_putstr_fd(const char *s, int fd);
+void	ft_putstr_fd(int fd, const char *s);
+void	*ft_memset(void *s, int c, size_t n);
+void	ft_bzero(void *s, size_t n);
+int		ft_error(char *str);
 
 //	PARAMS PARSER
 int	load_game_params(t_params *params, char *file_path);
