@@ -6,7 +6,7 @@
 #    By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/10/08 16:18:19 by plepercq          #+#    #+#              #
-#    Updated: 2026/10/12 19:29:26 by plepercq         ###   ########.fr        #
+#    Updated: 2026/10/19 15:43:28 by plepercq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ _WHITE	= \x1b[37m
 #	Program variables
 NAME 		= cub3D
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -Wall -Wextra -Werror 
 
 DIR_SRC		= src
 DIR_OBJ		= obj
@@ -63,8 +63,9 @@ clean:
 
 fclean:
 	@$(RM) -vf $(NAME) $(LOG_FILE)
+	@$(RM) -vf $(OBJS)
 	@$(RM) -vdf $(addprefix $(DIR_OBJ)/, $(DIR_UTILS))
-	@$(RM) -vdf $(OBJS) $(DIR_OBJ)
+	@$(RM) -vdf $(DIR_OBJ)
 	@$(RM) -vrf $(MLX_DIR)
 	@echo -e "- ${_GREEN}Full clean${_END}\n"
 

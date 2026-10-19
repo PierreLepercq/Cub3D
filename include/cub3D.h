@@ -6,7 +6,7 @@
 /*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:25:23 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/15 17:58:03 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/10/19 16:00:16 by plepercq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,22 @@
 
 # include <limits.h>
 
-# define SUCCESS	1
-# define FAILURE	0
+# include <mlx.h>
+
+# define SUCCESS			1
+# define FAILURE			0
+
+# define KEY_LEFT			65361
+# define KEY_UP				65362
+# define KEY_RIGHT			65363
+# define KEY_DOWN			65364
+# define K_ESC				65307
+
+# define WIN_HEIGHT			900
+# define WIN_WIDTH			1800
+# define WIN_TITLE			"Cub3D"
+
+# define VELOCITY			2.0
 
 typedef struct s_params
 {
@@ -46,20 +60,20 @@ typedef struct s_texture
 	int			width;
 }				t_texture;
 
-typedef struct s_game
+typedef struct s_frame
 {
-	char	*map;
-	char	*floor;
-	char	*ceiling;
-	char	*wall_n;
-	char	*wall_s;
-	char	*wall_w;
-	char	*wall_e;
-	char	**textures;
-}	t_game;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}			t_frame;
 
 typedef struct s_game
 {
+	void	*mlx;
+	void	*mlx_win;
+	int		win;
 	char	*map;
 	char	*floor;
 	char	*ceiling;
