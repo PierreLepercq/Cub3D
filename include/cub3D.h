@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:25:23 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/19 16:00:16 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/10/19 20:34:11 by llepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,14 @@ typedef struct s_game
 	char	*wall_w;
 	char	*wall_e;
 	char	**textures;
+	t_frame	frame;
 }	t_game;
 
 //	UTILS
 size_t	ft_strlen(const char *s);
-void	ft_putstr_fd(const char *s, int fd);
+void	ft_putstr_fd(int fd, const char *s);
+void	*ft_memset(void *s, int c, size_t n);
+void	ft_bzero(void *s, size_t n);
+int		ft_error(char *str);
 
 #endif

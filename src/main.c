@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:16:00 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/19 16:22:36 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/10/19 20:33:33 by llepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,23 @@
 int	wrong_arg_count(int argc)
 {
 	(void)argc;
-	ft_putstr_fd("Incorrect number of arguments (expected 2)\n", 2);
-	ft_putstr_fd("Usage : ./cub3D scene_description_file\n", 2);
-	return (1);
+	return(ft_error("Incorrect number of arguments (expected 2)\nUsage : ./cub3D scene_description_file\n"));
 }
 
 int	load_params_failed(char *game_file)
 {
-	ft_putstr_fd("Failed to load game parameters from file : ", 2);
-	ft_putstr_fd(game_file, 2);
-	ft_putstr_fd("\n", 2);
+	ft_error("Failed to load game parameters from file : ");
+	ft_putstr_fd(2, game_file);
+	ft_putstr_fd(2, "\n");
 	return (2);
 }
 
 // ------------------------------------
 
-int	game_exit(t_game *game, char *err_msg)
+int	game_exit(t_game *game)
 {
-	(void)err_msg;
-
+	if (game->frame.img)
+		mlx_destroy_image(game->mlx,game->frame.img);
 	if (game->mlx_win)
 		mlx_destroy_window(game->mlx, game->mlx_win);
 	if (game->mlx)
@@ -52,58 +50,59 @@ void	move(t_game *g)
 
 int	key_hook(int keysym, void *game)
 {
+	t_game *g;
+	
+	g = game;
 	if (keysym == 'w' || keysym == KEY_UP)
-		move(game);
+		move(g);
 	if (keysym == 'a' || keysym == KEY_LEFT)
-		move(game);
+		move(g);
 	if (keysym == 's' || keysym == KEY_DOWN)
-		move(game);
+		move(g);
 	if (keysym == 'd' || keysym == KEY_RIGHT)
-		move(game);
+		move(g);
 	if (keysym == K_ESC)
-		game_exit(game, NULL);
+		mlx_loop_end(g->mlx);
 	return (0);
 }
 
-void	mlx_window_init(t_game *game)
+int	mlx_window_init(t_game *game)
 {
 	game->mlx_win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, WIN_TITLE);
 	if (!game->mlx_win)
-		game_exit(game, NULL);
+		return (ft_error("window initialization failed.\n"));
 	mlx_key_hook(game->mlx_win, key_hook, game);
-	mlx_hook(game->mlx_win, 17, 0L, (void *)game_exit, game);
+	mlx_hook(game->mlx_win, 17, 0L, (void *)mlx_loop_end, game->mlx);
+	return (SUCCESS);
 }
 
 int	game_init(t_game *game, char *file_path)
 {
 	(void)file_path;
-	game->win = 0;
-	game->mlx = NULL;
-	game->mlx_win = NULL;
-
+	ft_bzero(game, sizeof(t_game));
 	game->mlx = mlx_init();
 	if (!game->mlx)
-		game_exit(game, NULL);
-	mlx_window_init(game);
-	return (0);
+		return (ft_error("mlx initialization failed\n"));
+	return (mlx_window_init(game));
 }
 
-int	game_launch(t_game *g)
+int	game_launch(t_game *game)
 {
-	t_frame	frame;
 	char	*dst;
 	int		h;
 	int		w;
 
-	frame.img = mlx_new_image(g->mlx, WIN_WIDTH, WIN_HEIGHT);
-	frame.addr = mlx_get_data_addr(frame.img, &frame.bits_per_pixel, &frame.line_length, &frame.endian);
+	game->frame.img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HEIGHT);
+	if (!game->frame.img)
+		return (ft_error("image initialization failed\n"));
+	game->frame.addr = mlx_get_data_addr(game->frame.img, &game->frame.bits_per_pixel, &game->frame.line_length, &game->frame.endian);
 	h = 0;
 	while (h < WIN_HEIGHT)
 	{
 		w = 0;
 		while (w < WIN_WIDTH)
 		{
-			dst = frame.addr + (h * frame.line_length + w * (frame.bits_per_pixel / 8));
+			dst = game->frame.addr + (h * game->frame.line_length + w * (game->frame.bits_per_pixel / 8));
 			if (h > WIN_HEIGHT / 2)
 				*(unsigned int*)dst = 0x00FFFF00;
 			else
@@ -112,9 +111,9 @@ int	game_launch(t_game *g)
 		}
 		h++;
 	}
-	mlx_put_image_to_window(g->mlx, g->mlx_win, frame.img, 0, 0);
-	mlx_loop(g->mlx);
-	return (0);
+	mlx_put_image_to_window(game->mlx, game->mlx_win, game->frame.img, 0, 0);
+	mlx_loop(game->mlx);
+	return (SUCCESS);
 }
 
 int	main(int argc, char **argv)
@@ -126,8 +125,8 @@ int	main(int argc, char **argv)
 	//	return (wrong_arg_count(argc));
 	//if (!load_game_params(g, argv[1]))
 	//	return (load_params_failed(argv[1]));
-	game_init(&game, argv[1]);
-	game_launch(&game);
-	game_exit(&game, NULL);
-	return (1);
+	if (game_init(&game, argv[1]))
+		game_launch(&game);
+	game_exit(&game);
+	return (0);
 }
