@@ -12,6 +12,12 @@ Raycaster with miniLibX
 
 ### Compilation
 
+you must have installed the packages before
+```
+on fedora : 
+sudo dnf install xorg-x11-server-Xorg libX11-devel libXext-devel zlib-devel libbsd-devel
+```
+
 ```bash
 make
 ```

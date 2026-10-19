@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:25:23 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/19 18:20:25 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/10/19 22:42:33 by pierre_lepe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,9 @@ typedef struct s_game
 //	UTILS
 size_t	ft_strlen(const char *s);
 void	ft_putstr_fd(const char *s, int fd);
+
+//	PARAMS PARSER
+int	load_game_params(t_params *params, char *file_path);
+int	free_game_params(t_params *params);
 
 #endif

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 15:43:07 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/15 18:18:06 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/10/19 00:31:33 by pierre_lepe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	cub3d(t_params params)
+void	cub3d(t_params *params)
 {
 	t_game	g;
 

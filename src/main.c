@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:16:00 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/19 16:22:36 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/10/19 22:43:03 by pierre_lepe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	wrong_arg_count(int argc)
+int	wrong_arg_count(void)
 {
 	(void)argc;
-	ft_putstr_fd("Incorrect number of arguments (expected 2)\n", 2);
+	ft_putstr_fd("Incorrect number of arguments (expected 1)\n", 2);
 	ft_putstr_fd("Usage : ./cub3D scene_description_file\n", 2);
 	return (1);
 }

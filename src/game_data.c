@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   game_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 17:26:15 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/15 15:47:41 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/10/19 00:40:52 by pierre_lepe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	game_init(t_game *g)
+void	game_data_init(t_game *g)
 {
 	g->map = NULL;
 	g->textures = NULL;
@@ -22,4 +22,9 @@ void	game_init(t_game *g)
 	g->wall_e = NULL;
 	g->floor = NULL;
 	g->ceiling = NULL;
+}
+
+void	game_data_free(t_game *g)
+{
+	return ;
 }

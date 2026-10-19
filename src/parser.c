@@ -1,23 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_params.c                                      :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 15:50:46 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/15 18:03:25 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/10/19 00:41:16 by pierre_lepe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-int	load_file(t_game *g, char *file_path)
-{
-	(void)g;
-	(void)file_path;
-	return (SUCCESS);
-}
 
 int	load_map(char *line)
 {
