@@ -6,7 +6,7 @@
 /*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:16:00 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/19 23:04:37 by pierre_lepe      ###   ########.fr       */
+/*   Updated: 2026/10/20 00:36:30 by pierre_lepe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	wrong_arg_count(void)
 {
-	(void)argc;
 	return(ft_error("Incorrect number of arguments (expected 2)\nUsage : ./cub3D scene_description_file\n"));
 }
 
@@ -116,8 +115,32 @@ int	game_launch(t_game *game)
 	return (SUCCESS);
 }
 
+
+t_vec2	get_next_hit_dx(t_vec2 pos, t_vec2 ray_dir)
+{
+	float	sign;
+	float	delta;
+	t_vec2	hit;
+
+	sign = ray_dir.x / fabsf(ray_dir.x);
+	if (sign == 1)
+		delta = 1 - (pos.x - (int)pos.x);
+	else
+		delta = - (pos.x - (int)pos.x);
+	printf("SIGN : %f\n", sign);
+	printf("DELTA : %f\n", delta);
+	
+	hit.x = 0.;
+	hit.y = 0.;
+	return (hit);
+}
+
+
 int	main(int argc, char **argv)
 {
+	t_vec2 pos;
+	t_vec2 ray;
+	float test;
 	t_game	game;
 
 	(void)argc;
@@ -125,8 +148,20 @@ int	main(int argc, char **argv)
 	//	return (wrong_arg_count(argc));
 	//if (!load_game_params(g, argv[1]))
 	//	return (load_params_failed(argv[1]));
+
+	test = 1.6;
+	test = test - (int)test;
+	printf("coucou %f\n", test);
+
 	if (game_init(&game, argv[1]))
-		game_launch(&game);
+	{
+		pos.x = 1.6;
+		pos.y = 0.1;
+		ray.x = 1;
+		ray.y = 1;
+		get_next_hit_dx(pos, ray);
+		//game_launch(&game);
+	}	
 	game_exit(&game);
 	return (0);
 }

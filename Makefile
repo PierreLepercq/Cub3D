@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+         #
+#    By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/10/08 16:18:19 by plepercq          #+#    #+#              #
-#    Updated: 2026/10/19 20:34:26 by llepesqu         ###   ########.fr        #
+#    Updated: 2026/10/20 00:11:18 by pierre_lepe      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ fclean:
 	@$(RM) -vf $(OBJS)
 	@$(RM) -vdf $(addprefix $(DIR_OBJ)/, $(DIR_UTILS))
 	@$(RM) -vdf $(DIR_OBJ)
-	@$(RM) -vrf $(MLX_DIR)
+	# @$(RM) -vrf $(MLX_DIR)
 	@echo -e "- ${_GREEN}Full clean${_END}\n"
 
 re: fclean all

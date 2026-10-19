@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/19 17:15:31 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/19 19:13:50 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/10/20 00:12:10 by pierre_lepe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,35 @@ bool	is_hitting_wall(t_game *g, t_vec2 hit)
 	return (false);
 }
 
-t_vec2	get_next_hit()
+t_vec2	get_next_hit_dx(t_vec2 pos, t_vec2 ray_dir)
 {
+	float	sign;
+	float	delta;
 	t_vec2	hit;
 
+	sign = ray_dir.x / fabsf(ray_dir.x);
+	delta = sign - (pos.x - (int)pos.x);
+	printf("SIGN : %f\n", sign);
+	printf("DELTA : %f\n", delta);
 	
-
+	hit.x = 0.;
+	hit.y = 0.;
 	return (hit);
 }
+
+
+
 
 t_vec2	DDA(t_game *g, t_vec2 pos, t_vec2 ray_dir)
 {
 	t_vec2	hit;
 	float	slope;
+	t_vec2	next_hit_dx;
+	t_vec2	next_hit_dy;
 
+	hit = pos;
 	slope = ray_dir.y / ray_dir.x;
-	while (!is_hitting_wall(g, pos))
+	while (!is_hitting_wall(g, hit))
 	
 	hit.x = pos.x
 
