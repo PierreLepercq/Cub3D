@@ -6,7 +6,7 @@
 /*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:25:23 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/19 16:00:16 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/10/19 18:20:25 by plepercq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <sys/time.h>
 
 # include <limits.h>
+# include <math.h>
 
 # include <mlx.h>
 
@@ -52,6 +53,12 @@ typedef struct s_params
 
 }	t_params;
 
+typedef struct s_vec2
+{
+	float	x;
+	float	y;
+}	t_vec2;
+
 typedef struct s_texture
 {
 	char		*path;
@@ -74,7 +81,7 @@ typedef struct s_game
 	void	*mlx;
 	void	*mlx_win;
 	int		win;
-	char	*map;
+	char	**map;
 	char	*floor;
 	char	*ceiling;
 	char	*wall_n;
