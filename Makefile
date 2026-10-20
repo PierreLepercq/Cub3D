@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+         #
+#    By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/10/08 16:18:19 by plepercq          #+#    #+#              #
-#    Updated: 2026/10/20 00:11:18 by pierre_lepe      ###   ########.fr        #
+#    Updated: 2026/10/20 11:26:49 by plepercq         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ MLX_DIR     = minilibx-linux
 MLX_URL     = https://github.com/42Paris/minilibx-linux
 MLX_FLAGS   = -L$(MLX_DIR) -lmlx -lX11 -lXext
 
-CMD_TEST	= ./$(NAME) ./themes/doom.cub
+CMD_TEST	= ./$(NAME)
 LOG_FILE	= logs
 
 #	Rules
@@ -79,7 +79,8 @@ test: fclean $(NAME)
 	@echo -e "> ${_GREEN}Program name ${_WHITE}: ${_BOLD}$(NAME)${_END}\n"
 	@echo -e "- ${_BOLD}${_PURPLE}Test ${_END}: $(CMD_TEST)"
 	@$(RM) -f vgcore.*
-	@valgrind -q $(CMD_TEST) 2>&1 | tee $(LOG_FILE)
+	# @valgrind -q $(CMD_TEST) 2>&1 | tee $(LOG_FILE)
+	$(CMD_TEST)
 
 $(NAME): $(OBJS)
 	@echo -e "- ${_CYAN}compilation and assembly ${_WHITE}: ${_GREEN}OK${_END}\n"

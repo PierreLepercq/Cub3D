@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
+/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:16:00 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/20 00:36:30 by pierre_lepe      ###   ########.fr       */
+/*   Updated: 2026/10/20 18:35:46 by plepercq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,31 +116,56 @@ int	game_launch(t_game *game)
 }
 
 
-t_vec2	get_next_hit_dx(t_vec2 pos, t_vec2 ray_dir)
+t_vec2	vec2(float x, float y)
 {
-	float	sign;
-	float	delta;
-	t_vec2	hit;
+	t_vec2	vec2;
 
-	sign = ray_dir.x / fabsf(ray_dir.x);
-	if (sign == 1)
-		delta = 1 - (pos.x - (int)pos.x);
-	else
-		delta = - (pos.x - (int)pos.x);
-	printf("SIGN : %f\n", sign);
-	printf("DELTA : %f\n", delta);
+	vec2.x = x;
+	vec2.y = y;
+	return (vec2);
+}
+
+t_vec2	get_delta(t_vec2 pos, t_vec2 ray_dir)
+{
+	float	theta;
+	t_vec2	delta;
 	
-	hit.x = 0.;
-	hit.y = 0.;
-	return (hit);
+	delta = vec2(0., 0.);
+	if (ray_dir.x == 0)
+	{
+		
+	}
+	theta = atan()
+	return (delta);
+}
+
+t_vec2	get_next_hit(t_vec2 pos, t_vec2 ray_dir)
+{
+	t_vec2	next;
+	t_vec2	sign;
+	t_vec2	delta;
+	t_vec2	length;
+
+	sign = vec2(0., 0.);
+	if (ray_dir.x != 0)
+		sign.x = ray_dir.x / fabsf(ray_dir.x);
+	if (ray_dir.y != 0)
+		sign.y = ray_dir.y / fabsf(ray_dir.y);
+	next = vec2((int)pos.x + sign.x, (int)pos.y + sign.y);
+	delta = vec2(next.x - pos.x, next.y - pos.y);
+	length.x = fabsf((ray_dir.x / ray_dir.y) * delta.x);
+	length.y = fabsf((ray_dir.y / ray_dir.x) * delta.y);
+	printf("SIGN : %f, %f\n", sign.x, sign.y);
+	printf("NEXT : %f, %f\n", next.x, next.y);
+	printf("LENGTH : %f, %f\n", length.x, length.y);
+	if (length.x < length.y)
+		return (vec2(delta.x, length.x));
+	return (vec2(delta.y, length.y));
 }
 
 
 int	main(int argc, char **argv)
 {
-	t_vec2 pos;
-	t_vec2 ray;
-	float test;
 	t_game	game;
 
 	(void)argc;
@@ -149,17 +174,9 @@ int	main(int argc, char **argv)
 	//if (!load_game_params(g, argv[1]))
 	//	return (load_params_failed(argv[1]));
 
-	test = 1.6;
-	test = test - (int)test;
-	printf("coucou %f\n", test);
-
 	if (game_init(&game, argv[1]))
 	{
-		pos.x = 1.6;
-		pos.y = 0.1;
-		ray.x = 1;
-		ray.y = 1;
-		get_next_hit_dx(pos, ray);
+		get_next_hit(vec2(0, 0), vec2(1, 2));
 		//game_launch(&game);
 	}	
 	game_exit(&game);
