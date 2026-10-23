@@ -6,7 +6,7 @@
 /*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:16:00 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/20 18:35:46 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/10/23 16:10:34 by plepercq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,84 +85,134 @@ int	game_init(t_game *game, char *file_path)
 	return (mlx_window_init(game));
 }
 
-int	game_launch(t_game *game)
+
+t_vec2f	vec2f(float x, float y)
 {
-	char	*dst;
-	int		h;
-	int		w;
-
-	game->frame.img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HEIGHT);
-	if (!game->frame.img)
-		return (ft_error("image initialization failed\n"));
-	game->frame.addr = mlx_get_data_addr(game->frame.img, &game->frame.bits_per_pixel, &game->frame.line_length, &game->frame.endian);
-	h = 0;
-	while (h < WIN_HEIGHT)
-	{
-		w = 0;
-		while (w < WIN_WIDTH)
-		{
-			dst = game->frame.addr + (h * game->frame.line_length + w * (game->frame.bits_per_pixel / 8));
-			if (h > WIN_HEIGHT / 2)
-				*(unsigned int*)dst = 0x00FFFF00;
-			else
-				*(unsigned int*)dst = 0x0000FFFF;
-			w++;
-		}
-		h++;
-	}
-	mlx_put_image_to_window(game->mlx, game->mlx_win, game->frame.img, 0, 0);
-	mlx_loop(game->mlx);
-	return (SUCCESS);
-}
-
-
-t_vec2	vec2(float x, float y)
-{
-	t_vec2	vec2;
+	t_vec2f	vec2;
 
 	vec2.x = x;
 	vec2.y = y;
 	return (vec2);
 }
 
-t_vec2	get_delta(t_vec2 pos, t_vec2 ray_dir)
+t_vec2i	vec2i(int x, int y)
 {
-	float	theta;
-	t_vec2	delta;
-	
-	delta = vec2(0., 0.);
-	if (ray_dir.x == 0)
-	{
-		
-	}
-	theta = atan()
-	return (delta);
+	t_vec2i	vec2;
+
+	vec2.x = x;
+	vec2.y = y;
+	return (vec2);
 }
 
-t_vec2	get_next_hit(t_vec2 pos, t_vec2 ray_dir)
+t_ARGB	ARGB(unsigned char A, unsigned char R, unsigned char G, unsigned char B)
 {
-	t_vec2	next;
-	t_vec2	sign;
-	t_vec2	delta;
-	t_vec2	length;
+	t_ARGB	argb;
 
-	sign = vec2(0., 0.);
+	argb.A = A;
+	argb.R = R;
+	argb.G = G;
+	argb.B = B;
+	return (argb);
+}
+
+char *ARGB_to_hex(t_ARGB argb)
+{
+	char	hexa[11];
+
+	hexa[0] = '0';
+	hexa[1] = 'x';
+	hexa[2] = '0' + argb.A / 16;
+	hexa[3] = '0' + argb.A % 16;
+	hexa[4] = '0' + argb.R / 16;
+	hexa[5] = '0' + argb.R % 16;
+	hexa[6] = '0' + argb.G / 16;
+	hexa[7] = '0' + argb.G % 16;
+	hexa[8] = '0' + argb.B / 16;
+	hexa[9] = '0' + argb.B % 16;
+	hexa[10] = '\0';
+	return (hexa);
+}
+
+void color_pixel(t_vec2i pos)
+{
+	
+}
+
+void	draw_circle(t_frame f, t_vec2i pos, unsigned int radius, int blur)
+{
+	int				h;
+	int				w;
+	char			*dst;
+	unsigned int	r;
+
+	(void)blur;
+	r = 0;
+	h = pos.y - radius;
+	w = pos.x - radius;
+	while (r < radius)
+	{
+		dst = f.addr;
+		dst += pos.y * f.line_length;
+		dst += pos.x * (f.bits_per_pixel / 8);
+		*(unsigned int*)dst = 0x00FF0000;
+		r++;
+	}
+}
+
+int	game_launch(t_game *game)
+{
+	//char	*dst;
+	//int		h;
+	//int		w;
+
+	game->frame.img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HEIGHT);
+	if (!game->frame.img)
+		return (ft_error("image initialization failed\n"));
+	game->frame.addr = mlx_get_data_addr(game->frame.img, &game->frame.bits_per_pixel, &game->frame.line_length, &game->frame.endian);
+	draw_circle(game->frame, vec2i(100, 100), 10, 0);
+	//h = 0;
+	//while (h < WIN_HEIGHT)
+	//{
+	//	w = 0;
+	//	while (w < WIN_WIDTH)
+	//	{
+	//		dst = game->frame.addr + (h * game->frame.line_length + w * (game->frame.bits_per_pixel / 8));
+	//		if (h > WIN_HEIGHT / 2)
+	//			*(unsigned int*)dst = 0x00FFFF00;
+	//		else
+	//			*(unsigned int*)dst = 0x0000FFFF;
+	//		w++;
+	//	}
+	//	h++;
+	//}
+	mlx_put_image_to_window(game->mlx, game->mlx_win, game->frame.img, 0, 0);
+	mlx_loop(game->mlx);
+	return (SUCCESS);
+}
+
+t_vec2f	get_next_hit(t_vec2f pos, t_vec2f ray_dir)
+{
+	t_vec2f	next;
+	t_vec2f	sign;
+	t_vec2f	delta;
+	t_vec2f	length;
+
+	sign = vec2f(0., 0.);
 	if (ray_dir.x != 0)
 		sign.x = ray_dir.x / fabsf(ray_dir.x);
 	if (ray_dir.y != 0)
 		sign.y = ray_dir.y / fabsf(ray_dir.y);
-	next = vec2((int)pos.x + sign.x, (int)pos.y + sign.y);
-	delta = vec2(next.x - pos.x, next.y - pos.y);
+	next = vec2f((int)pos.x + sign.x, (int)pos.y + sign.y);
+	delta = vec2f(next.x - pos.x, next.y - pos.y);
 	length.x = fabsf((ray_dir.x / ray_dir.y) * delta.x);
 	length.y = fabsf((ray_dir.y / ray_dir.x) * delta.y);
 	printf("SIGN : %f, %f\n", sign.x, sign.y);
 	printf("NEXT : %f, %f\n", next.x, next.y);
 	printf("LENGTH : %f, %f\n", length.x, length.y);
 	if (length.x < length.y)
-		return (vec2(delta.x, length.x));
-	return (vec2(delta.y, length.y));
+		return (vec2f(delta.x, length.x));
+	return (vec2f(delta.y, length.y));
 }
-
 
 int	main(int argc, char **argv)
 {
@@ -176,8 +226,8 @@ int	main(int argc, char **argv)
 
 	if (game_init(&game, argv[1]))
 	{
-		get_next_hit(vec2(0, 0), vec2(1, 2));
-		//game_launch(&game);
+		get_next_hit(vec2f(0, 0), vec2f(1, 2));
+		game_launch(&game);
 	}	
 	game_exit(&game);
 	return (0);

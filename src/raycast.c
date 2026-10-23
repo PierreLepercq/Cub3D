@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
+/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/19 17:15:31 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/20 00:12:10 by pierre_lepe      ###   ########.fr       */
+/*   Updated: 2026/10/23 15:32:34 by plepercq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-bool	is_hitting_wall(t_game *g, t_vec2 hit)
+bool	is_hitting_wall(t_game *g, t_vec2f hit)
 {
 	int		map_x;
 	int		map_y;
@@ -24,11 +24,11 @@ bool	is_hitting_wall(t_game *g, t_vec2 hit)
 	return (false);
 }
 
-t_vec2	get_next_hit_dx(t_vec2 pos, t_vec2 ray_dir)
+t_vec2f	get_next_hit_dx(t_vec2f pos, t_vec2f ray_dir)
 {
 	float	sign;
 	float	delta;
-	t_vec2	hit;
+	t_vec2f	hit;
 
 	sign = ray_dir.x / fabsf(ray_dir.x);
 	delta = sign - (pos.x - (int)pos.x);
@@ -43,12 +43,12 @@ t_vec2	get_next_hit_dx(t_vec2 pos, t_vec2 ray_dir)
 
 
 
-t_vec2	DDA(t_game *g, t_vec2 pos, t_vec2 ray_dir)
+t_vec2f	DDA(t_game *g, t_vec2f pos, t_vec2f ray_dir)
 {
-	t_vec2	hit;
+	t_vec2f	hit;
 	float	slope;
-	t_vec2	next_hit_dx;
-	t_vec2	next_hit_dy;
+	t_vec2f	next_hit_dx;
+	t_vec2f	next_hit_dy;
 
 	hit = pos;
 	slope = ray_dir.y / ray_dir.x;
@@ -59,9 +59,9 @@ t_vec2	DDA(t_game *g, t_vec2 pos, t_vec2 ray_dir)
 	return (hit);
 }
 
-t_vec2	raycast(t_vec2 pos, t_vec2 ray_dir)
+t_vec2f	raycast(t_vec2f pos, t_vec2f ray_dir)
 {
-	t_vec2	ray;
+	t_vec2f	ray;
 	
 
 	dda()

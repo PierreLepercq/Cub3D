@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
+/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:25:23 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/19 23:03:59 by pierre_lepe      ###   ########.fr       */
+/*   Updated: 2026/10/23 18:20:10 by plepercq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 
 # define SUCCESS			1
 # define FAILURE			0
+
+# define BASE_HEX			"0123456789ABCDEF"
 
 # define KEY_LEFT			65361
 # define KEY_UP				65362
@@ -53,11 +55,26 @@ typedef struct s_params
 
 }	t_params;
 
-typedef struct s_vec2
+typedef struct s_color
+{
+	char	a;
+	char	r;
+	char	g;
+	char	b;
+	char
+}	t_color;
+
+typedef struct s_vec2i
+{
+	int	x;
+	int	y;
+}	t_vec2i;
+
+typedef struct s_vec2f
 {
 	float	x;
 	float	y;
-}	t_vec2;
+}	t_vec2f;
 
 typedef struct s_texture
 {
@@ -98,6 +115,10 @@ void	ft_putstr_fd(int fd, const char *s);
 void	*ft_memset(void *s, int c, size_t n);
 void	ft_bzero(void *s, size_t n);
 int		ft_error(char *str);
+
+//	COLOR
+t_color		argb(char a, char r, char g, char b);
+__uint32_t	color_hex(t_color color);
 
 //	PARAMS PARSER
 int	load_game_params(t_params *params, char *file_path);
