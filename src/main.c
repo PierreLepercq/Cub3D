@@ -6,7 +6,7 @@
 /*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:16:00 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/24 01:49:07 by pierre_lepe      ###   ########.fr       */
+/*   Updated: 2026/10/24 11:29:47 by pierre_lepe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int	game_launch(t_game *game)
 	game->frame.addr = mlx_get_data_addr(game->frame.img, &game->frame.bits_per_pixel, &game->frame.line_length, &game->frame.endian);
 	//draw_pixel(game->frame, vec2(100, 100), argb(0, 0, 255, 0));
 	//draw_rect(game->frame, vec2(100, 100), vec2(870, 700), argb(0, 255, 0, 0));
-	draw_circle(game->frame, vec2(500, 500), 200, argb(0, 255, 0, 0));
+	draw_circle(game->frame, vec2(500, 500), 20, argb(200, 255, 0, 0));
 	//draw_line(game->frame, vec2(100, 100), vec2(200, 200), argb(0, 0, 255, 255));
 	//h = 0;
 	//while (h < WIN_HEIGHT)

@@ -6,7 +6,7 @@
 #    By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/10/08 16:18:19 by plepercq          #+#    #+#              #
-#    Updated: 2026/10/24 01:47:53 by pierre_lepe      ###   ########.fr        #
+#    Updated: 2026/10/24 11:32:45 by pierre_lepe      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,8 +58,7 @@ clean:
 fclean:
 	@$(RM) -vf $(NAME) $(LOG_FILE)
 	@$(RM) -vf $(OBJS)
-	@$(RM) -vdf $(addprefix $(DIR_OBJ)/, $(DIR_UTILS))
-	@$(RM) -vdf $(DIR_OBJ)
+	@$(RM) -vdrf $(DIR_OBJ)
 	# @$(RM) -vrf $(MLX_DIR)
 	@echo -e "- ${_GREEN}Full clean${_END}\n"
 

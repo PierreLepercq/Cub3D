@@ -6,7 +6,7 @@
 /*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 23:54:39 by pierre_lepe       #+#    #+#             */
-/*   Updated: 2026/10/24 01:51:28 by pierre_lepe      ###   ########.fr       */
+/*   Updated: 2026/10/24 11:28:02 by pierre_lepe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,26 @@ void	draw_rect(t_frame f, t_vec2 pos1, t_vec2 pos2, t_color color)
 	draw_line(f, pos2, vec2(pos2.x, pos1.y), color);
 }
 
-void	draw_circle(t_frame f, t_vec2 pos, unsigned int radius, t_color color)
+void	draw_circle(t_frame f, t_vec2 pos, int radius, t_color color)
 {
-	int		i;
 	t_vec2	px;
+	float	hyp;
 
-	i = 0;
-	while (i < 1000)
+	px.x = 0;
+	px.y = radius;
+	while (px.x < px.y)
 	{
-		px = vec2(pos.x + (int)(cosf(i) * radius), pos.y + (int)(sinf(i) * radius));
-		draw_pixel(f, px, color);
-		i++;
+		hyp = pow(px.x, 2) + pow(px.y - 0.5, 2);
+		if (hyp > pow(radius, 2))
+			px.y--;
+		draw_pixel(f, vec2(pos.x + px.x, pos.y + px.y), color);
+		draw_pixel(f, vec2(pos.x - px.x, pos.y + px.y), color);
+		draw_pixel(f, vec2(pos.x + px.x, pos.y - px.y), color);
+		draw_pixel(f, vec2(pos.x - px.x, pos.y - px.y), color);
+		draw_pixel(f, vec2(pos.x + px.y, pos.y + px.x), color);
+		draw_pixel(f, vec2(pos.x + px.y, pos.y - px.x), color);
+		draw_pixel(f, vec2(pos.x - px.y, pos.y + px.x), color);
+		draw_pixel(f, vec2(pos.x - px.y, pos.y - px.x), color);
+		px.x++;
 	}
 }
