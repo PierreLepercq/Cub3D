@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.c                                            :+:      :+:    :+:   */
+/*   vector2.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/15 15:43:07 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/19 00:31:33 by pierre_lepe      ###   ########.fr       */
+/*   Created: 2026/10/24 00:10:45 by pierre_lepe       #+#    #+#             */
+/*   Updated: 2026/10/24 00:14:54 by pierre_lepe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#ifndef VECTOR2_H
+# define VECTOR2_H
 
-void	cub3d(t_params *params)
+typedef struct s_vec2
 {
-	t_game	g;
+	int	x;
+	int	y;
+}	t_vec2;
 
-	(void)params;
-}
+t_vec2	vec2(int x, int y);
+
+#endif

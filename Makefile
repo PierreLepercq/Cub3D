@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+         #
+#    By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/10/08 16:18:19 by plepercq          #+#    #+#              #
-#    Updated: 2026/10/20 11:26:49 by plepercq         ###   ########.fr        #
+#    Updated: 2026/10/24 01:47:53 by pierre_lepe      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,16 +33,10 @@ DIR_SRC		= src
 DIR_OBJ		= obj
 DIR_INC		= include
 
-DIR_UTILS	= utils
-UTILS		= ft_strlen ft_putstr_fd ft_bzero ft_memset ft_error
-
-FILES		= 	main \
-				$(addprefix $(DIR_UTILS)/, $(UTILS))
-
-SRCS		= $(addprefix $(DIR_SRC)/, $(addsuffix .c, $(FILES)))
-OBJS		= $(addprefix $(DIR_OBJ)/, $(addsuffix .o, $(FILES)))
+SRCS		= $(shell find $(DIR_SRC) -name '*.c')
+OBJS		= $(patsubst $(DIR_SRC)%.c, $(DIR_OBJ)%.o, $(SRCS))
 INCS 		= -I $(DIR_INC) -I $(MLX_DIR)
-LINKS		= $(MLX_FLAGS)
+LINKS		= $(MLX_FLAGS) -lm
 
 MLX_DIR     = minilibx-linux
 MLX_URL     = https://github.com/42Paris/minilibx-linux

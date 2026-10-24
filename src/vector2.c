@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_data.c                                        :+:      :+:    :+:   */
+/*   vector2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/08 17:26:15 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/19 00:40:52 by pierre_lepe      ###   ########.fr       */
+/*   Created: 2026/10/24 00:09:36 by pierre_lepe       #+#    #+#             */
+/*   Updated: 2026/10/24 00:17:26 by pierre_lepe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "vector2.h"
 
-void	game_data_init(t_game *g)
+t_vec2	vec2(int x, int y)
 {
-	g->map = NULL;
-	g->textures = NULL;
-	g->wall_n = NULL;
-	g->wall_s = NULL;
-	g->wall_w = NULL;
-	g->wall_e = NULL;
-	g->floor = NULL;
-	g->ceiling = NULL;
-}
+	t_vec2	vec2;
 
-void	game_data_free(t_game *g)
-{
-	return ;
+	vec2.x = x;
+	vec2.y = y;
+	return (vec2);
 }
