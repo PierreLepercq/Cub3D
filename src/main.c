@@ -6,7 +6,7 @@
 /*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:16:00 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/24 12:41:25 by pierre_lepe      ###   ########.fr       */
+/*   Updated: 2026/10/24 13:56:04 by pierre_lepe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,11 +109,12 @@ int	game_launch(t_game *game)
 	game->frame.img = mlx_new_image(game->mlx, WIN_WIDTH, WIN_HEIGHT);
 	if (!game->frame.img)
 		return (ft_error("image initialization failed\n"));
+	game->frame.size = vec2(WIN_WIDTH, WIN_HEIGHT);
 	game->frame.addr = mlx_get_data_addr(game->frame.img, &game->frame.bits_per_pixel, &game->frame.line_length, &game->frame.endian);
 	//draw_pixel(game->frame, vec2(100, 100), argb(0, 0, 255, 0));
 	draw_circle(game->frame, vec2(250, 250), 200, argb(0, 255, 0, 0));
-	draw_rect(game->frame, vec2(300, 300), vec2(700, 700), argb(150, 0, 255, 0));
-	draw_rect(game->frame, vec2(500, 500), vec2(900, 800), argb(100, 0, 0, 255));
+	draw_fillrect(game->frame, vec2(300, 300), vec2(1000, 1000), argb(150, 0, 255, 0));
+	draw_rect(game->frame, vec2(400, 400), vec2(300, 400), argb(100, 0, 0, 255));
 	//draw_circle(game->frame, vec2(500, 500), 20, argb(200, 255, 0, 0));
 	//draw_line(game->frame, vec2(100, 100), vec2(200, 200), argb(0, 0, 255, 255));
 	//h = 0;
