@@ -6,7 +6,7 @@
 /*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 16:10:57 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/23 23:52:12 by pierre_lepe      ###   ########.fr       */
+/*   Updated: 2026/10/24 12:37:01 by pierre_lepe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ t_color	argb(uint8_t a, uint8_t r, uint8_t g, uint8_t b)
 	return (color);
 }
 
-t_color	mix_color(t_color c1, t_color c2)
+t_color	color_blend(t_color bg, t_color fg)
 {
 	t_color	mix;
 
-	mix.a = c2.a + c1.a * (1 - c2.a);
-	mix.r = (c2.r * c2.a) + (c1.r * c1.a) * (1 - c2.a);
-	mix.g = (c2.g * c2.a) + (c1.g * c1.a) * (1 - c2.a);
-	mix.b = (c2.b * c2.a) + (c1.b * c1.a) * (1 - c2.a);
+	mix.a = 255;
+	mix.r = (fg.r * (255 - fg.a) + bg.r * fg.a) / 255;
+    mix.g = (fg.g * (255 - fg.a) + bg.g * fg.a) / 255;
+    mix.b = (fg.b * (255 - fg.a) + bg.b * fg.a) / 255;
 	return (mix);
 }
 

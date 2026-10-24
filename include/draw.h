@@ -6,7 +6,7 @@
 /*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 00:44:33 by pierre_lepe       #+#    #+#             */
-/*   Updated: 2026/10/24 11:15:35 by pierre_lepe      ###   ########.fr       */
+/*   Updated: 2026/10/24 11:52:47 by pierre_lepe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@ typedef struct s_frame
 	int		line_length;
 	int		endian;
 }			t_frame;
+
+//	UTILS
+t_vec2	min_pos(t_vec2 pos1, t_vec2 pos2);
+t_vec2	max_pos(t_vec2 pos1, t_vec2 pos2);
 
 void	draw_pixel(t_frame f, t_vec2 pos, t_color color);
 void    draw_line(t_frame f, t_vec2 pos1, t_vec2 pos2, t_color color);
