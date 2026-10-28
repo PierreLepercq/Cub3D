@@ -28,6 +28,7 @@ void	draw_pixel(t_frame f, t_vec2 pos, t_color color)
 	*(uint32_t*)dst = color_to_hex(color_blend(bg_color, color));
 }
 
+//	Digital Differential Analyzer
 void    draw_line(t_frame f, t_vec2 pos1, t_vec2 pos2, t_color color)
 {
     t_vec2  delta;
@@ -41,15 +42,17 @@ void    draw_line(t_frame f, t_vec2 pos1, t_vec2 pos2, t_color color)
 		step = abs(delta.x);
 	else
 		step = abs(delta.y);
-	inc_x = delta.x / step;
-	inc_y = delta.y / step;
+	inc_x = (float)delta.x / step;
+	inc_y = (float)delta.y / step;
 	i = 0;
 	while (i < step)
 	{
-		draw_pixel(f, vec2(pos1.x + (i * inc_x), pos1.y + (i * inc_y)), color);
+		delta = vec2(pos1.x + (i * inc_x), pos1.y + (i * inc_y));
+		draw_pixel(f, delta, color);
 		i++;
 	}
-	draw_pixel(f, vec2(pos1.x + (i * inc_x), pos1.y + (i * inc_y)), color);
+	delta = vec2(pos1.x + (i * inc_x), pos1.y + (i * inc_y));
+	draw_pixel(f, delta, color);
 }
 
 void	draw_rect(t_frame f, t_vec2 pos, t_vec2 size, t_color color)
@@ -63,6 +66,7 @@ void	draw_rect(t_frame f, t_vec2 pos, t_vec2 size, t_color color)
 	draw_line(f, end, vec2(end.x, pos.y), color);
 }
 
+//	Bresenham's mid-point circle algorithm
 void	draw_circle(t_frame f, t_vec2 pos, int radius, t_color color)
 {
 	t_vec2	px;

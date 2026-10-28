@@ -112,9 +112,16 @@ int	game_launch(t_game *game)
 	game->frame.size = vec2(WIN_WIDTH, WIN_HEIGHT);
 	game->frame.addr = mlx_get_data_addr(game->frame.img, &game->frame.bits_per_pixel, &game->frame.line_length, &game->frame.endian);
 	//draw_pixel(game->frame, vec2(100, 100), argb(0, 0, 255, 0));
-	draw_circle(game->frame, vec2(250, 250), 200, argb(0, 255, 0, 0));
-	draw_fillrect(game->frame, vec2(300, 300), vec2(1000, 1000), argb(150, 0, 255, 0));
-	draw_rect(game->frame, vec2(400, 400), vec2(300, 400), argb(100, 0, 0, 255));
+	//draw_line(game->frame, vec2(100, 100), vec2(50, 50), argb(0, 0, 255, 0));
+	//draw_line(game->frame, vec2(250, 250), vec2(385, 398), argb(0, 0, 255, 0));
+	//draw_line(game->frame, vec2(391, 392), vec2(250, 250), argb(0, 0, 255, 0));
+
+	draw_circle(game->frame, vec2(300, 300), 50, argb(0, 255, 0, 0));
+	draw_aacircle(game->frame, vec2(500, 300), 50, argb(0, 255, 0, 0));
+
+	draw_fillcircle(game->frame, vec2(400, 250), 100, argb(100, 0, 0, 255));
+	draw_fillrect(game->frame, vec2(300, 300), vec2(200, 100), argb(150, 0, 255, 0));
+	//draw_rect(game->frame, vec2(400, 400), vec2(300, 400), argb(100, 0, 0, 255));
 	//draw_circle(game->frame, vec2(500, 500), 20, argb(200, 255, 0, 0));
 	//draw_line(game->frame, vec2(100, 100), vec2(200, 200), argb(0, 0, 255, 255));
 	//h = 0;

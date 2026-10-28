@@ -38,7 +38,7 @@ OBJS		= $(patsubst $(DIR_SRC)%.c, $(DIR_OBJ)%.o, $(SRCS))
 INCS 		= -I $(DIR_INC) -I $(MLX_DIR)
 LINKS		= $(MLX_FLAGS) -lm
 
-MLX_DIR     = minilibx-linux
+MLX_DIR     = mlx
 MLX_URL     = https://github.com/42Paris/minilibx-linux
 MLX_FLAGS   = -L$(MLX_DIR) -lmlx -lX11 -lXext
 

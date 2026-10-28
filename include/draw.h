@@ -41,6 +41,8 @@ void	draw_circle(t_frame f, t_vec2 pos, int radius, t_color color);
 
 //	FILL BASICS
 void	draw_fillrect(t_frame f, t_vec2 pos1, t_vec2 pos2, t_color color);
-void	draw_fillcircle(t_frame f, t_vec2 pos1, t_vec2 pos2, t_color color);
+void	draw_fillcircle(t_frame f, t_vec2 pos, int radius, t_color color);
+
+void	draw_aacircle(t_frame f, t_vec2 pos, int radius, t_color color);
 
 #endif

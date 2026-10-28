@@ -41,8 +41,8 @@
 # define KEY_DOWN			65364
 # define K_ESC				65307
 
-# define WIN_HEIGHT			900
-# define WIN_WIDTH			1800
+# define WIN_HEIGHT			600
+# define WIN_WIDTH			800
 # define WIN_TITLE			"Cub3D"
 
 # define VELOCITY			2.0
