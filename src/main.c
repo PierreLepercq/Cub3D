@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
+/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:16:00 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/24 13:56:04 by pierre_lepe      ###   ########.fr       */
+/*   Updated: 2026/10/29 18:47:19 by plepercq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,16 @@ int	game_exit(t_game *game)
 	return (SUCCESS);
 }
 
-void	move(t_game *g)
+void	move(t_game *g, )
+{
+	g->player
+	(void)g;
+}
+
+void	rotate(t_game *g)
 {
 	(void)g;
+	printf("rotate");
 }
 
 int	key_hook(int keysym, void *game)
@@ -55,11 +62,11 @@ int	key_hook(int keysym, void *game)
 	if (keysym == 'w' || keysym == KEY_UP)
 		move(g);
 	if (keysym == 'a' || keysym == KEY_LEFT)
-		move(g);
+		rotate(g);
 	if (keysym == 's' || keysym == KEY_DOWN)
 		move(g);
 	if (keysym == 'd' || keysym == KEY_RIGHT)
-		move(g);
+		rotate(g);
 	if (keysym == K_ESC)
 		mlx_loop_end(g->mlx);
 	return (0);
@@ -82,6 +89,7 @@ int	game_init(t_game *game, char *file_path)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		return (ft_error("mlx initialization failed\n"));
+	game->player.pos = vec2(50, 50);
 	return (mlx_window_init(game));
 }
 
@@ -116,11 +124,11 @@ int	game_launch(t_game *game)
 	//draw_line(game->frame, vec2(250, 250), vec2(385, 398), argb(0, 0, 255, 0));
 	//draw_line(game->frame, vec2(391, 392), vec2(250, 250), argb(0, 0, 255, 0));
 
-	draw_circle(game->frame, vec2(300, 300), 50, argb(0, 255, 0, 0));
-	draw_aacircle(game->frame, vec2(500, 300), 50, argb(0, 255, 0, 0));
+	//draw_circle(game->frame, vec2(300, 300), 50, argb(0, 255, 0, 0));
+	//draw_aacircle(game->frame, vec2(500, 300), 50, argb(0, 255, 0, 0));
 
-	draw_fillcircle(game->frame, vec2(400, 250), 100, argb(100, 0, 0, 255));
-	draw_fillrect(game->frame, vec2(300, 300), vec2(200, 100), argb(150, 0, 255, 0));
+	draw_fillcircle(game->frame, game->player.pos, 4, argb(0, 255, 0, 0));
+	//draw_fillrect(game->frame, vec2(300, 300), vec2(200, 100), argb(0, 0, 255, 0));
 	//draw_rect(game->frame, vec2(400, 400), vec2(300, 400), argb(100, 0, 0, 255));
 	//draw_circle(game->frame, vec2(500, 500), 20, argb(200, 255, 0, 0));
 	//draw_line(game->frame, vec2(100, 100), vec2(200, 200), argb(0, 0, 255, 255));

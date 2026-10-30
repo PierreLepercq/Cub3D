@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
+/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:25:23 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/24 00:47:27 by pierre_lepe      ###   ########.fr       */
+/*   Updated: 2026/10/29 18:36:00 by plepercq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,20 +73,26 @@ typedef struct s_texture
 	int			width;
 }				t_texture;
 
+typedef struct s_player
+{
+	t_vec2	pos;
+}				t_player;
+
 typedef struct s_game
 {
-	void	*mlx;
-	void	*mlx_win;
-	int		win;
-	char	**map;
-	char	*floor;
-	char	*ceiling;
-	char	*wall_n;
-	char	*wall_s;
-	char	*wall_w;
-	char	*wall_e;
-	char	**textures;
-	t_frame	frame;
+	void		*mlx;
+	void		*mlx_win;
+	int			win;
+	char		**map;
+	char		*floor;
+	char		*ceiling;
+	char		*wall_n;
+	char		*wall_s;
+	char		*wall_w;
+	char		*wall_e;
+	char		**textures;
+	t_player	player;
+	t_frame		frame;
 }	t_game;
 
 //	UTILS
