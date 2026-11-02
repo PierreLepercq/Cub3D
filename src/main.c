@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:16:00 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/29 18:47:19 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/11/02 03:30:04 by pierre_lepe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,8 @@ int	game_exit(t_game *game)
 	return (SUCCESS);
 }
 
-void	move(t_game *g, )
+void	move(t_game *g)
 {
-	g->player
 	(void)g;
 }
 
@@ -54,21 +53,36 @@ void	rotate(t_game *g)
 	printf("rotate");
 }
 
+int	game_loop(void *game)
+{
+	t_game	*g;
+
+	g = game;
+	draw_fillrect(g->frame, vec2(0, 0), g->frame.size, argb(253, 0, 0, 0));
+	draw_fillcircle_aa(
+		g->frame,
+		vec2(
+			200 + (cos(get_current_time_ms() / 900.) + 1) * 100,
+			200 + (sin(get_current_time_ms() / 300.) + 1) * 100),
+		10,
+		argb(0, 255, 0, 0)
+	);
+	mlx_put_image_to_window(g->mlx, g->mlx_win, g->frame.img, 0, 0);
+	return (0);
+}
+
 int	key_hook(int keysym, void *game)
 {
-	t_game *g;
-	
-	g = game;
 	if (keysym == 'w' || keysym == KEY_UP)
-		move(g);
+		move(game);
 	if (keysym == 'a' || keysym == KEY_LEFT)
-		rotate(g);
+		rotate(game);
 	if (keysym == 's' || keysym == KEY_DOWN)
-		move(g);
+		move(game);
 	if (keysym == 'd' || keysym == KEY_RIGHT)
-		rotate(g);
+		rotate(game);
 	if (keysym == K_ESC)
-		mlx_loop_end(g->mlx);
+		mlx_loop_end(((t_game *)game)->mlx);
 	return (0);
 }
 
@@ -77,6 +91,7 @@ int	mlx_window_init(t_game *game)
 	game->mlx_win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, WIN_TITLE);
 	if (!game->mlx_win)
 		return (ft_error("window initialization failed.\n"));
+	mlx_loop_hook(game->mlx, game_loop, game);
 	mlx_key_hook(game->mlx_win, key_hook, game);
 	mlx_hook(game->mlx_win, 17, 0L, (void *)mlx_loop_end, game->mlx);
 	return (SUCCESS);
@@ -90,9 +105,9 @@ int	game_init(t_game *game, char *file_path)
 	if (!game->mlx)
 		return (ft_error("mlx initialization failed\n"));
 	game->player.pos = vec2(50, 50);
+	game->frame.img = NULL;
 	return (mlx_window_init(game));
 }
-
 
 t_vec2f	vec2f(float x, float y)
 {
@@ -102,11 +117,6 @@ t_vec2f	vec2f(float x, float y)
 	vec2.y = y;
 	return (vec2);
 }
-
-//void color_pixel(t_vec2i pos)
-//{
-//	
-//}
 
 int	game_launch(t_game *game)
 {
@@ -119,34 +129,9 @@ int	game_launch(t_game *game)
 		return (ft_error("image initialization failed\n"));
 	game->frame.size = vec2(WIN_WIDTH, WIN_HEIGHT);
 	game->frame.addr = mlx_get_data_addr(game->frame.img, &game->frame.bits_per_pixel, &game->frame.line_length, &game->frame.endian);
-	//draw_pixel(game->frame, vec2(100, 100), argb(0, 0, 255, 0));
-	//draw_line(game->frame, vec2(100, 100), vec2(50, 50), argb(0, 0, 255, 0));
-	//draw_line(game->frame, vec2(250, 250), vec2(385, 398), argb(0, 0, 255, 0));
-	//draw_line(game->frame, vec2(391, 392), vec2(250, 250), argb(0, 0, 255, 0));
 
-	//draw_circle(game->frame, vec2(300, 300), 50, argb(0, 255, 0, 0));
-	//draw_aacircle(game->frame, vec2(500, 300), 50, argb(0, 255, 0, 0));
+	//draw_fillcircle_aa(((t_game *)game)->frame, vec2(200, 200), 100, argb(100, 255, 0, 0));
 
-	draw_fillcircle(game->frame, game->player.pos, 4, argb(0, 255, 0, 0));
-	//draw_fillrect(game->frame, vec2(300, 300), vec2(200, 100), argb(0, 0, 255, 0));
-	//draw_rect(game->frame, vec2(400, 400), vec2(300, 400), argb(100, 0, 0, 255));
-	//draw_circle(game->frame, vec2(500, 500), 20, argb(200, 255, 0, 0));
-	//draw_line(game->frame, vec2(100, 100), vec2(200, 200), argb(0, 0, 255, 255));
-	//h = 0;
-	//while (h < WIN_HEIGHT)
-	//{
-	//	w = 0;
-	//	while (w < WIN_WIDTH)
-	//	{
-	//		dst = game->frame.addr + (h * game->frame.line_length + w * (game->frame.bits_per_pixel / 8));
-	//		if (h > WIN_HEIGHT / 2)
-	//			*(unsigned int*)dst = 0x00FFFF00;
-	//		else
-	//			*(unsigned int*)dst = 0x0000FFFF;
-	//		w++;
-	//	}
-	//	h++;
-	//}
 	mlx_put_image_to_window(game->mlx, game->mlx_win, game->frame.img, 0, 0);
 	mlx_loop(game->mlx);
 	return (SUCCESS);

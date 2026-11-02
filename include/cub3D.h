@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:25:23 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/29 18:36:00 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/11/02 00:29:02 by pierre_lepe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <sys/time.h>
 
 # include <limits.h>
 # include <math.h>
@@ -29,6 +28,7 @@
 # include "color.h"
 # include "vector2.h"
 # include "draw.h"
+# include "time_utils.h"
 
 # define SUCCESS			1
 # define FAILURE			0
@@ -41,8 +41,8 @@
 # define KEY_DOWN			65364
 # define K_ESC				65307
 
-# define WIN_HEIGHT			600
-# define WIN_WIDTH			800
+# define WIN_HEIGHT			800
+# define WIN_WIDTH			1000
 # define WIN_TITLE			"Cub3D"
 
 # define VELOCITY			2.0

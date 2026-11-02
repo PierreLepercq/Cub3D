@@ -6,7 +6,7 @@
 #    By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/10/08 16:18:19 by plepercq          #+#    #+#              #
-#    Updated: 2026/10/24 11:32:45 by pierre_lepe      ###   ########.fr        #
+#    Updated: 2026/11/01 19:49:52 by pierre_lepe      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ _WHITE	= \x1b[37m
 #	Program variables
 NAME 		= cub3D
 CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror 
+CFLAGS		= -Wall -Wextra -Werror -std=gnu17
 
 DIR_SRC		= src
 DIR_OBJ		= obj
@@ -39,7 +39,7 @@ INCS 		= -I $(DIR_INC) -I $(MLX_DIR)
 LINKS		= $(MLX_FLAGS) -lm
 
 MLX_DIR     = mlx
-MLX_URL     = https://github.com/42Paris/minilibx-linux
+MLX_URL     = https://github.com/42paris/minilibx-linux.git
 MLX_FLAGS   = -L$(MLX_DIR) -lmlx -lX11 -lXext
 
 CMD_TEST	= ./$(NAME)

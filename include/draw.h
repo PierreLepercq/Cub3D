@@ -6,7 +6,7 @@
 /*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 00:44:33 by pierre_lepe       #+#    #+#             */
-/*   Updated: 2026/10/24 13:56:19 by pierre_lepe      ###   ########.fr       */
+/*   Updated: 2026/11/02 03:08:56 by pierre_lepe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,18 @@ typedef struct s_frame
 	t_vec2	size;
 }			t_frame;
 
-//	UTILS
-t_vec2	min_pos(t_vec2 pos1, t_vec2 pos2);
-t_vec2	max_pos(t_vec2 pos1, t_vec2 pos2);
+void	draw_pixel(t_frame f, t_vec2 pos, t_color c);
 
-//	BASICS
-void	draw_pixel(t_frame f, t_vec2 pos, t_color color);
-void    draw_line(t_frame f, t_vec2 pos1, t_vec2 pos2, t_color color);
-void	draw_rect(t_frame f, t_vec2 pos1, t_vec2 pos2, t_color color);
-void	draw_circle(t_frame f, t_vec2 pos, int radius, t_color color);
+void    draw_line(t_frame f, t_vec2 pos1, t_vec2 pos2, t_color c);
+//void    draw_line_aa(t_frame f, t_vec2 pos1, t_vec2 pos2, t_color c);
 
-//	FILL BASICS
-void	draw_fillrect(t_frame f, t_vec2 pos1, t_vec2 pos2, t_color color);
-void	draw_fillcircle(t_frame f, t_vec2 pos, int radius, t_color color);
+void	draw_rect(t_frame f, t_vec2 pos, t_vec2 size, t_color c);
+void	draw_fillrect(t_frame f, t_vec2 pos, t_vec2 size, t_color c);
 
-void	draw_aacircle(t_frame f, t_vec2 pos, int radius, t_color color);
+void	draw_circle(t_frame f, t_vec2 pos, int r, t_color c);
+void	draw_fillcircle(t_frame f, t_vec2 pos, int r, t_color c);
+
+void	draw_circle_aa(t_frame f, t_vec2 pos, int r, int thickness, t_color c);
+void	draw_fillcircle_aa(t_frame f, t_vec2 pos, int r, t_color c);
 
 #endif
