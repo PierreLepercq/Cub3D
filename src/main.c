@@ -6,7 +6,7 @@
 /*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:16:00 by plepercq          #+#    #+#             */
-/*   Updated: 2026/11/02 03:30:04 by pierre_lepe      ###   ########.fr       */
+/*   Updated: 2026/11/03 12:43:45 by pierre_lepe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,27 @@ int	game_exit(t_game *game)
 	return (SUCCESS);
 }
 
-void	move(t_game *g)
+void	move(t_game *g, int dir)
 {
 	(void)g;
+	(void)dir;
 }
 
-void	rotate(t_game *g)
+void	rotate(t_game *g, int angle)
 {
 	(void)g;
-	printf("rotate");
+	(void)angle;
+	printf("rotate : %i\n", angle);
+	g->player.angle += angle;
+	printf("player angle : %i\n", g->player.angle);
+	//draw_line(
+	//	g->frame,
+	//	vec2(500, 400),
+	//	vec2(
+	//		300 + (cos(get_current_time_ms() / 1000.) + 1) * 200,
+	//		200 + (sin(get_current_time_ms() / 1000.) + 1) * 200),
+	//	argb(0, 255, 255, 255)
+	//);
 }
 
 int	game_loop(void *game)
@@ -58,15 +70,27 @@ int	game_loop(void *game)
 	t_game	*g;
 
 	g = game;
-	draw_fillrect(g->frame, vec2(0, 0), g->frame.size, argb(253, 0, 0, 0));
+	draw_fillrect(g->frame, vec2(0, 0), g->frame.size, argb(0, 0, 0, 0));
+	draw_line(
+		g->frame,
+		g->player.pos,
+		vec2_add(g->player.pos, vec2(cos(g->player.angle / 360.) * 100, sin(g->player.angle / 360.) * 100)),
+		argb(0, 255, 255, 255)
+	);
 	draw_fillcircle_aa(
 		g->frame,
-		vec2(
-			200 + (cos(get_current_time_ms() / 900.) + 1) * 100,
-			200 + (sin(get_current_time_ms() / 300.) + 1) * 100),
-		10,
+		g->player.pos,
+		5,
 		argb(0, 255, 0, 0)
 	);
+	//draw_line(
+	//	g->frame,
+	//	vec2(500, 400),
+	//	vec2(
+	//		300 + (cos(get_current_time_ms() / 1000.) + 1) * 200,
+	//		200 + (sin(get_current_time_ms() / 1000.) + 1) * 200),
+	//	argb(0, 255, 255, 255)
+	//);
 	mlx_put_image_to_window(g->mlx, g->mlx_win, g->frame.img, 0, 0);
 	return (0);
 }
@@ -74,13 +98,13 @@ int	game_loop(void *game)
 int	key_hook(int keysym, void *game)
 {
 	if (keysym == 'w' || keysym == KEY_UP)
-		move(game);
+		move(game, 1);
 	if (keysym == 'a' || keysym == KEY_LEFT)
-		rotate(game);
+		rotate(game, 10);
 	if (keysym == 's' || keysym == KEY_DOWN)
-		move(game);
+		move(game, -1);
 	if (keysym == 'd' || keysym == KEY_RIGHT)
-		rotate(game);
+		rotate(game, -10);
 	if (keysym == K_ESC)
 		mlx_loop_end(((t_game *)game)->mlx);
 	return (0);
@@ -91,8 +115,8 @@ int	mlx_window_init(t_game *game)
 	game->mlx_win = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, WIN_TITLE);
 	if (!game->mlx_win)
 		return (ft_error("window initialization failed.\n"));
-	mlx_loop_hook(game->mlx, game_loop, game);
 	mlx_key_hook(game->mlx_win, key_hook, game);
+	mlx_loop_hook(game->mlx, game_loop, game);
 	mlx_hook(game->mlx_win, 17, 0L, (void *)mlx_loop_end, game->mlx);
 	return (SUCCESS);
 }
@@ -104,7 +128,7 @@ int	game_init(t_game *game, char *file_path)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		return (ft_error("mlx initialization failed\n"));
-	game->player.pos = vec2(50, 50);
+	game->player.pos = vec2(500, 400);
 	game->frame.img = NULL;
 	return (mlx_window_init(game));
 }

@@ -6,7 +6,7 @@
 /*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:25:23 by plepercq          #+#    #+#             */
-/*   Updated: 2026/11/02 00:29:02 by pierre_lepe      ###   ########.fr       */
+/*   Updated: 2026/11/03 12:18:35 by pierre_lepe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_texture
 typedef struct s_player
 {
 	t_vec2	pos;
+	int		angle;
 }				t_player;
 
 typedef struct s_game
