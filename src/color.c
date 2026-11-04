@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
+/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 16:10:57 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/24 13:26:53 by pierre_lepe      ###   ########.fr       */
+/*   Updated: 2026/11/04 15:02:28 by plepercq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_color	color_blend(t_color bg, t_color fg)
 t_color	hex_to_color(uint32_t hex)
 {
 	t_color	color;
-	
+
 	color.a = hex >> 24;
 	color.r = hex >> 16;
 	color.g = hex >> 8;

@@ -83,6 +83,18 @@ If the file is correct, the following command will run the game with the specifi
 ```
 
 ## Resources
+https://en.wikipedia.org/wiki/Ray_casting#
+https://en.wikipedia.org/wiki/Texture_mapping#Perspective_correctness
+https://lodev.org/cgtutor/raycasting.html
+https://aaaa.sh/creatures/dda-algorithm-interactive/
+https://en.wikipedia.org/wiki/Bresenham's_line_algorithm
+https://en.wikipedia.org/wiki/Xiaolin_Wu's_line_algorithm
+https://en.wikipedia.org/wiki/Texture_mapping#Perspective_correctness
+https://voxel.wiki/wiki/raycasting/
+https://fr.wikipedia.org/wiki/Algorithme_de_trac%C3%A9_de_segment
+https://7145d33p.wordpress.com/2025/08/26/raycast-dda/
+https://www.youtube.com/watch?v=NbSee-XM7WA
+https://math.univ-lyon1.fr/~pujo/fiche-trigo.pdf
 
 ## Authors
 

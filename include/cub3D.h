@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
+/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:25:23 by plepercq          #+#    #+#             */
-/*   Updated: 2026/11/03 12:18:35 by pierre_lepe      ###   ########.fr       */
+/*   Updated: 2026/11/04 18:39:26 by plepercq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,17 @@
 
 # define VELOCITY			2.0
 
+# define ON_KEYDOWN			2
+# define ON_KEYUP			3
+
+# define MAP				"1111111111\n\
+							 1000000001\n\
+							 1000000001\n\
+							 1000000001\n\
+							 1000000001\n\
+							 1000000001\n\
+							 1111111111"
+
 typedef struct s_params
 {
 	char	*map;
@@ -58,12 +69,6 @@ typedef struct s_params
 	char	*wall_e;
 
 }	t_params;
-
-typedef struct s_vec2f
-{
-	float	x;
-	float	y;
-}	t_vec2f;
 
 typedef struct s_texture
 {
@@ -78,6 +83,16 @@ typedef struct s_player
 	t_vec2	pos;
 	int		angle;
 }				t_player;
+
+typedef struct s_inputs
+{
+	bool		left;
+	bool		right;
+	bool		forward;
+	bool		backward;
+	bool		action;
+}				t_inputs;
+
 
 typedef struct s_game
 {
@@ -94,6 +109,7 @@ typedef struct s_game
 	char		**textures;
 	t_player	player;
 	t_frame		frame;
+	t_inputs	inputs;
 }	t_game;
 
 //	UTILS

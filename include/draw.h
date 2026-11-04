@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
+/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 00:44:33 by pierre_lepe       #+#    #+#             */
-/*   Updated: 2026/11/02 03:08:56 by pierre_lepe      ###   ########.fr       */
+/*   Updated: 2026/11/04 15:58:02 by plepercq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 # include "vector2.h"
 # include "color.h"
+
+# define CELL_SIZE		100
 
 typedef struct s_frame
 {
