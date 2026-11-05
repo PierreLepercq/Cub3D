@@ -6,34 +6,38 @@
 /*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 01:39:01 by pierre_lepe       #+#    #+#             */
-/*   Updated: 2026/11/04 16:03:55 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/11/05 16:46:12 by plepercq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "draw.h"
 
 //	Digital Differential Analyzer
-void	draw_line(t_frame f, t_vec2 pos1, t_vec2 pos2, t_color c)
+void	draw_line(t_frame f, t_vec2 px1, t_vec2 px2, t_color c)
 {
 	t_vec2	delta;
 	t_vec2	inc;
-	int		i;
-	int		step;
+	float	len_max;
+	float	step;
+	float	i;
 
-	delta = vec2_sub(pos2, pos1);
-	if (fabsf(delta.x) > fabsf(delta.y))
-		step = fabsf(delta.x);
-	else
-		step = fabsf(delta.y);
-	inc = vec2(delta.x / step, delta.y / step);
-	i = 0;
-	while (i < step)
+	delta = vec2_sub(px2, px1);
+	len_max = fabsf(delta.x);
+	step = delta.x / len_max;
+	if (fabsf(delta.y) > len_max)
 	{
-		delta = vec2(pos1.x + (i * inc.x), pos1.y + (i * inc.y));
-		draw_pixel(f, delta, c);
-		i++;
+		len_max = fabsf(delta.y);
+		step = delta.y / len_max;
 	}
-	delta = vec2(pos1.x + (i * inc.x), pos1.y + (i * inc.y));
+	inc = vec2(delta.x / len_max, delta.y / len_max);
+	i = 0;
+	while (i < len_max)
+	{
+		delta = vec2_add(px1, vec2_mult(inc, i));
+		draw_pixel(f, delta, c);
+		i += step;
+	}
+	delta = vec2_add(px1, vec2_mult(inc, i));
 	draw_pixel(f, delta, c);
 }
 
