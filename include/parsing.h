@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
+/*   By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/15 15:50:46 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/19 00:41:16 by pierre_lepe      ###   ########.fr       */
+/*   Created: 2026/11/05 17:10:13 by llepesqu          #+#    #+#             */
+/*   Updated: 2026/11/05 17:14:48 by llepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#ifndef PARSING_H
+#define PARSING_H
 
-int	load_map(char *line)
-{
-	(void)line;
-	return (SUCCESS);
-}
+int	load_game_params(t_params *params, char *file_path);
+int	free_game_params(t_params *params);
 
-int	load_color(char *line)
-{
-	(void)line;
-	return (SUCCESS);
-}
+int	wrong_arg_count(void);
 
-int	load_texture(char *line)
-{
-	(void)line;
-	return (SUCCESS);
-}
+int	load_params_failed(char *game_file);
+
+#endif

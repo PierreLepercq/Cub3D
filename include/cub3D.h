@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:25:23 by plepercq          #+#    #+#             */
-/*   Updated: 2026/11/04 18:39:26 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/11/05 20:34:26 by llepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,28 @@
 # include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <fcntl.h>
+# include <string.h>
+# include <errno.h>
 
 # include <limits.h>
 # include <math.h>
 
 # include <mlx.h>
 
+# include "utils.h"
 # include "color.h"
 # include "vector2.h"
 # include "draw.h"
 # include "time_utils.h"
+# include "parsing.h"
 
 # define SUCCESS			1
 # define FAILURE			0
 
 # define BASE_HEX			"0123456789ABCDEF"
 
-# define KEY_LEFT			65361
+# define KEY_LEFT			65361f, 
 # define KEY_UP				65362
 # define KEY_RIGHT			65363
 # define KEY_DOWN			65364
@@ -46,10 +51,12 @@
 # define WIN_TITLE			"Cub3D"
 
 # define VELOCITY			2.0
-
+f, 
 # define ON_KEYDOWN			2
 # define ON_KEYUP			3
 
+# define FILENAME_EXTENSION ".cub"
+# define CHARS				"01NSWE"
 # define MAP				"1111111111\n\
 							 1000000001\n\
 							 1000000001\n\
@@ -112,15 +119,6 @@ typedef struct s_game
 	t_inputs	inputs;
 }	t_game;
 
-//	UTILS
-size_t	ft_strlen(const char *s);
-void	ft_putstr_fd(int fd, const char *s);
-void	*ft_memset(void *s, int c, size_t n);
-void	ft_bzero(void *s, size_t n);
-int		ft_error(char *str);
 
-//	PARAMS PARSER
-int	load_game_params(t_params *params, char *file_path);
-int	free_game_params(t_params *params);
 
 #endif

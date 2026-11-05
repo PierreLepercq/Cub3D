@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+         #
+#    By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/10/08 16:18:19 by plepercq          #+#    #+#              #
-#    Updated: 2026/11/01 19:49:52 by pierre_lepe      ###   ########.fr        #
+#    Updated: 2026/11/05 16:46:02 by llepesqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ OBJS		= $(patsubst $(DIR_SRC)%.c, $(DIR_OBJ)%.o, $(SRCS))
 INCS 		= -I $(DIR_INC) -I $(MLX_DIR)
 LINKS		= $(MLX_FLAGS) -lm
 
-MLX_DIR     = mlx
+MLX_DIR     = minilibx-linux
 MLX_URL     = https://github.com/42paris/minilibx-linux.git
 MLX_FLAGS   = -L$(MLX_DIR) -lmlx -lX11 -lXext
 

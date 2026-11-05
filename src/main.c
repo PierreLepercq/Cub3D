@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:16:00 by plepercq          #+#    #+#             */
-/*   Updated: 2026/11/04 18:40:43 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/11/05 17:10:49 by llepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,6 @@
 //{
 //	
 //}
-
-int	wrong_arg_count(void)
-{
-	return(ft_error("Incorrect number of arguments (expected 2)\nUsage : ./cub3D scene_description_file\n"));
-}
-
-int	load_params_failed(char *game_file)
-{
-	ft_error("Failed to load game parameters from file : ");
-	ft_putstr_fd(2, game_file);
-	ft_putstr_fd(2, "\n");
-	return (2);
-}
 
 // ------------------------------------
 

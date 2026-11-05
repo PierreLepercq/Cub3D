@@ -1,0 +1,13 @@
+- x Argument : un seul, extension .cub exacte (rejeter map.cub.txt et .cub tout court)
+- Fichier : open qui échoue, fichier vide ou dossier passé en argument → erreur
+- Identifiants NO SO WE EA F C : chacun présent une seule fois, dans n'importe quel ordre, espaces autorisés entre les éléments
+- Textures : le chemin existe, s'ouvre et se charge en xpm (sinon erreur), pas de texte en trop après
+- Couleurs F/C : exactement 3 valeurs entre 0 et 255, rien que des chiffres (255,,0, -1 ou 256 → erreur)
+- Lignes vides : acceptées avant la map, interdites au milieu de la map
+- Map en dernier : rien d'autre ne doit la suivre, à part des lignes vides
+- Caractères : seulement 0 1 N S E W et l'espace, avec un seul joueur (zéro ou deux → erreur)
+- Map fermée : chaque 0 et le joueur ne doivent jamais toucher un espace, un bord ou le bout d'une ligne plus courte (flood fill
+ou vérification des 4 voisins)
+- Lignes de longueurs différentes : complète-les à la même largeur pour ne pas lire hors du tableau
+- Sortie : Error\n suivi d'un message, toute la mémoire libérée sur chaque chemin d'erreur (vérifie avec valgrind)
+- Détails : \r en fin de ligne, tabulations, identifiant inconnu (NOO)
