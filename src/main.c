@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:16:00 by plepercq          #+#    #+#             */
-/*   Updated: 2026/11/04 18:40:43 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/11/06 01:15:34 by pierre_lepe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,21 +78,22 @@ int	game_loop(void *game)
 	g = game;
 
 	if (g->inputs.left)
-		g->player.angle += 10;
-	if (g->inputs.right)
 		g->player.angle -= 10;
+	if (g->inputs.right)
+		g->player.angle += 10;
 
-	dir = vec2(cosf(g->player.angle), sinf(g->player.angle));
+	dir = vec2(cosf(g->player.angle / 360.), sinf(g->player.angle / 360.));
+	//pvec2(dir);
 
 	if (g->inputs.forward)
-		g->player.pos = vec2_add(g->player.pos, vec2_mult(dir, 1));
+		g->player.pos = vec2_add(g->player.pos, vec2_mult(dir, 3));
 	if (g->inputs.backward)
-		g->player.pos = vec2_add(g->player.pos, vec2_mult(dir, -1));
+		g->player.pos = vec2_add(g->player.pos, vec2_mult(dir, -3));
 	draw_fillrect(g->frame, vec2(0, 0), g->frame.size, argb(0, 0, 0, 0));
 	draw_line(
 		g->frame,
 		g->player.pos,
-		vec2_add(g->player.pos, vec2(cos(g->player.angle / 360.) * 100, sin(g->player.angle / 360.) * 100)),
+		vec2_add(g->player.pos, vec2_mult(dir, 100)),
 		argb(0, 255, 255, 255)
 	);
 	draw_fillcircle_aa(
@@ -101,6 +102,7 @@ int	game_loop(void *game)
 		5,
 		argb(0, 255, 0, 0)
 	);
+
 	//draw_fillcircle_aa(
 	//	g->frame,
 	//	vec2(

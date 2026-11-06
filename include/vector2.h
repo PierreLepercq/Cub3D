@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector2.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 00:10:45 by pierre_lepe       #+#    #+#             */
-/*   Updated: 2026/11/04 16:04:03 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/11/06 00:55:03 by pierre_lepe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_vec2
 	float	y;
 }	t_vec2;
 
-t_vec2	vec2(int x, int y);
+t_vec2	vec2(float x, float y);
 float	vec2_len(t_vec2 v);
 t_vec2	vec2_add(t_vec2 v1, t_vec2 v2);
 t_vec2	vec2_sub(t_vec2 v1, t_vec2 v2);
