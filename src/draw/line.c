@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
+/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 01:39:01 by pierre_lepe       #+#    #+#             */
-/*   Updated: 2026/11/09 16:29:21 by pierre_lepe      ###   ########.fr       */
+/*   Updated: 2026/11/10 14:13:44 by plepercq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	draw_line(t_frame f, t_vec2 pos1, t_vec2 pos2, t_color c)
 		return (draw_pixel(f, pos1, c));
 	delta = vec2_sub(pos2, pos1);
 	if (fabsf(delta.x) > fabsf(delta.y))
-		step = roundf(delta.x);
+		step = fabsf(delta.x);
 	else
-		step = roundf(delta.y);
+		step = fabsf(delta.y);
 	inc = vec2(delta.x / step, delta.y / step);
 	i = 0;
 	while (i <= step)

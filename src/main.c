@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
+/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:16:00 by plepercq          #+#    #+#             */
-/*   Updated: 2026/11/09 01:00:17 by pierre_lepe      ###   ########.fr       */
+/*   Updated: 2026/11/10 15:10:25 by plepercq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,16 +204,16 @@ bool	is_int(float f)
 	return ((int)f == f);
 }
 
-t_vec2	get_next_edges(t_game *g)
+t_vec2	get_next_edges(t_vec2 pos, int16_t angle)
 {
 	t_vec2	edges;
-	
-	edges = angle_to_relative_pos(g->player.angle);
-	if (edges.x == -1 && !is_int(g->player.pos.x))
+
+	edges = angle_to_relative_pos(angle);
+	if (edges.x == -1 && !is_int(pos.x))
 		edges.x = 0;
-	if (edges.y == -1 && !is_int(g->player.pos.y))
+	if (edges.y == -1 && !is_int(pos.y))
 		edges.y = 0;
-	edges = vec2_add(g->player.pos, edges);
+	edges = vec2_add(pos, edges);
 	return (vec2((int)edges.x, (int)edges.y));
 }
 
@@ -224,40 +224,30 @@ float	min(float a, float b)
 	return (b);
 }
 
-float	raycast(t_game	*g)
+float	raycast(t_vec2 pos, int16_t angle)
 {
-	int		ch;
-	int		ang;
 	float	rad;
-	float	hyp;
-	t_vec2	pos;
-	t_vec2	dir;
 	t_vec2	delta;
-	t_vec2	next;
 
-	hyp = 0;
+	angle = angle % 360;
+	if (angle < 0)
+		angle = 360 + angle;
+	rad = angle * (M_PI / 180.);
+	printf("next = ");
+	pvec2(get_next_edges(pos, angle));
+	printf("pos = ");
+	pvec2(pos);
+	delta = vec2_sub(get_next_edges(pos, angle), pos);
+	printf("delta = ");
+	pvec2(delta);
+	if (abs(angle % 180) == 0)
+		return (fabsf(delta.x));
+	if (abs(angle % 180) == 90)
+		return (fabsf(delta.y));
+	return (min(fabsf(delta.x / cosf(rad)), fabsf(delta.y / sinf(rad))));
+}
 
-	ang = g->player.angle % 360;
-	if (ang < 0)
-		ang = 360 + ang;
-
-	rad = g->player.angle * (M_PI / 180.);
-	dir = vec2(cosf(rad), sinf(rad));
-
-	pos = vec2_add(g->player.pos, vec2_mult(dir, hyp));
-	//printf("1 - ");
-	//pvec2(pos);
-	next = get_next_edges(g);
-	pvec2(next);
-	delta = vec2_sub(next, pos);
-	if (abs(ang % 180) == 0)
-		hyp += fabsf(delta.x);
-	else if (abs(ang % 180) == 90)
-		hyp += fabsf(delta.y);
-	else
-		hyp += min(delta.x / cos(rad), delta.y / sin(rad));
-
-	/*
+/*
 	//pos = vec2_add(g->player.pos, vec2_mult(dir, hyp));
 	printf("2 - %f\n", hyp);
 	//pvec2(pos);
@@ -274,7 +264,6 @@ float	raycast(t_game	*g)
 
 	printf("3 - %f\n", hyp);
 	//pvec2(pos);
-	*/
 
 	//pvec2(vec2_add(g->player.pos, vec2_mult(dir, hyp)));
 
@@ -303,6 +292,7 @@ float	raycast(t_game	*g)
 	//	printf("Y\n");
 	return (0.);
 }
+*/
 
 int	game_loop(void *game)
 {
@@ -310,6 +300,8 @@ int	game_loop(void *game)
 	float	rad;
 	t_vec2	pos;
 	t_vec2	dir;
+	float	hyp1;
+	float	hyp2;
 
 	g = game;
 
@@ -318,7 +310,7 @@ int	game_loop(void *game)
 	if (g->inputs.right)
 		g->player.angle += 3;
 
-	//printf("Angle : %i\n", g->player.angle % 360);
+	printf("Angle : %i\n", g->player.angle % 360);
 	rad = g->player.angle * (M_PI / 180.);
 	dir = vec2(cosf(rad), sinf(rad));
 	//pvec2(dir);
@@ -332,14 +324,41 @@ int	game_loop(void *game)
 	pos = vec2_mult(g->player.pos, 100);
 	draw_line(
 		g->frame,
-		pos,
-		vec2_add(pos, vec2_mult(dir, 1000)),
+		vec2_mult(g->player.pos, 100),
+		vec2_add(vec2_mult(g->player.pos, 100), vec2_mult(dir, 1000)),
 		argb(0, 50, 50, 50)
 	);
-	raycast(g);
+	
+	hyp1 = raycast(g->player.pos, g->player.angle);
+	draw_line(
+		g->frame,
+		vec2_mult(g->player.pos, 100),
+		vec2_add(vec2_mult(g->player.pos, 100), vec2_mult(dir, hyp1 * 100)),
+		argb(0, 0, 255, 0)
+	);
+
+	pos = vec2_add(g->player.pos, vec2_mult(dir, hyp1));
+	pvec2(pos);
+
 	draw_fillcircle_aa(
 		g->frame,
-		pos,
+		vec2_mult(pos, 100),
+		5,
+		argb(0, 0, 255, 0)
+	);
+
+	hyp2 = raycast(pos, g->player.angle);
+	draw_line(
+		g->frame,
+		vec2_mult(pos, 100),
+		vec2_add(vec2_mult(pos, 100), vec2_mult(dir, hyp2 * 100)),
+		argb(0, 0, 0, 255)
+	);
+
+
+	draw_fillcircle_aa(
+		g->frame,
+		vec2_mult(g->player.pos, 100),
 		5,
 		argb(0, 255, 0, 0)
 	);
@@ -410,7 +429,7 @@ int	game_init(t_game *game, char *file_path)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		return (ft_error("mlx initialization failed\n"));
-	game->player.pos = vec2(4.5, 4);
+	game->player.pos = vec2(4, 4);
 	game->player.angle = -90;
 	//game->map = ft_split(MAP);
 	return (mlx_window_init(game));
