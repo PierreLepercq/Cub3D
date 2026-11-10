@@ -6,7 +6,7 @@
 /*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 01:39:01 by pierre_lepe       #+#    #+#             */
-/*   Updated: 2026/11/06 00:46:10 by pierre_lepe      ###   ########.fr       */
+/*   Updated: 2026/11/09 16:29:21 by pierre_lepe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,21 @@ void	draw_line(t_frame f, t_vec2 pos1, t_vec2 pos2, t_color c)
 	int		i;
 	int		step;
 
+	if (pos1.x == pos2.x && pos1.y == pos2.y)
+		return (draw_pixel(f, pos1, c));
 	delta = vec2_sub(pos2, pos1);
 	if (fabsf(delta.x) > fabsf(delta.y))
-		step = fabsf(delta.x);
+		step = roundf(delta.x);
 	else
-		step = fabsf(delta.y);
+		step = roundf(delta.y);
 	inc = vec2(delta.x / step, delta.y / step);
 	i = 0;
-	while (i < step)
+	while (i <= step)
 	{
 		delta = vec2(pos1.x + (i * inc.x), pos1.y + (i * inc.y));
 		draw_pixel(f, delta, c);
 		i++;
 	}
-	delta = vec2(pos1.x + (i * inc.x), pos1.y + (i * inc.y));
-	draw_pixel(f, delta, c);
 }
 
 //void	draw_line_aa(t_frame f, t_vec2 pos1, t_vec2 pos2, t_color c)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:25:23 by plepercq          #+#    #+#             */
-/*   Updated: 2026/11/04 18:39:26 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/11/08 13:30:07 by pierre_lepe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define KEY_DOWN			65364
 # define K_ESC				65307
 
-# define WIN_HEIGHT			800
+# define WIN_HEIGHT			1000
 # define WIN_WIDTH			1000
 # define WIN_TITLE			"Cub3D"
 
@@ -50,13 +50,16 @@
 # define ON_KEYDOWN			2
 # define ON_KEYUP			3
 
-# define MAP				"1111111111\n\
-							 1000000001\n\
-							 1000000001\n\
-							 1000000001\n\
-							 1000000001\n\
-							 1000000001\n\
-							 1111111111"
+# define MAP				"1111111111\
+1100000001\
+1000000001\
+1000000001\
+1000000001\
+1000000001\
+1000000001\
+1000001001\
+1000001001\
+1111111111"
 
 typedef struct s_params
 {
@@ -80,8 +83,8 @@ typedef struct s_texture
 
 typedef struct s_player
 {
-	t_vec2	pos;
-	int		angle;
+	t_vec2		pos;
+	int16_t		angle;
 }				t_player;
 
 typedef struct s_inputs
