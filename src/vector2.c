@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   vector2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 00:09:36 by pierre_lepe       #+#    #+#             */
-/*   Updated: 2026/11/04 18:13:22 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/11/06 00:54:46 by pierre_lepe      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector2.h"
 #include "stdio.h"
 
-t_vec2	vec2(int x, int y)
+t_vec2	vec2(float x, float y)
 {
 	t_vec2	vec2;
 

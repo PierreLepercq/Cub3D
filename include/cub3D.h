@@ -6,7 +6,7 @@
 /*   By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:25:23 by plepercq          #+#    #+#             */
-/*   Updated: 2026/11/05 20:34:26 by llepesqu         ###   ########.fr       */
+/*   Updated: 2026/11/14 07:36:07 by llepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 # define KEY_DOWN			65364
 # define K_ESC				65307
 
-# define WIN_HEIGHT			800
+# define WIN_HEIGHT			1000
 # define WIN_WIDTH			1000
 # define WIN_TITLE			"Cub3D"
 
@@ -87,8 +87,8 @@ typedef struct s_texture
 
 typedef struct s_player
 {
-	t_vec2	pos;
-	int		angle;
+	t_vec2		pos;
+	int16_t		angle;
 }				t_player;
 
 typedef struct s_inputs
