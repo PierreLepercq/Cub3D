@@ -6,7 +6,7 @@
 /*   By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:25:23 by plepercq          #+#    #+#             */
-/*   Updated: 2026/11/19 18:10:11 by llepesqu         ###   ########.fr       */
+/*   Updated: 2026/11/19 19:00:19 by llepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 
 # define BASE_HEX			"0123456789ABCDEF"
 
-# define KEY_LEFT			65361f, 
+# define KEY_LEFT			65361
 # define KEY_UP				65362
 # define KEY_RIGHT			65363
 # define KEY_DOWN			65364

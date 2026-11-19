@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_case.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/17 16:26:30 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/12 19:21:59 by plepercq         ###   ########.fr       */
+/*   Created: 2025/12/01 12:36:56 by llepesqu          #+#    #+#             */
+/*   Updated: 2025/12/02 14:13:46 by llepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
-
-size_t	ft_strlen(const char *s)
+int	ft_toupper(int c)
 {
-	int	len;
+	if (c >= 'a' && c <= 'z')
+		c = c - 32;
+	return (c);
+}
 
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
+int	ft_tolower(int c)
+{
+	if (c >= 'A' && c <= 'Z')
+		c = c + 32;
+	return (c);
 }

@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/19 19:58:23 by llepesqu          #+#    #+#             */
-/*   Updated: 2026/10/19 19:58:36 by llepesqu         ###   ########.fr       */
+/*   Created: 2025/12/04 11:59:49 by llepesqu          #+#    #+#             */
+/*   Updated: 2025/12/04 12:38:53 by llepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	ft_memset(s, 0, n);
+	del(lst->content);
+	free(lst);
 }

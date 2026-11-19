@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/18 17:11:58 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/19 20:22:48 by llepesqu         ###   ########.fr       */
+/*   Created: 2025/12/03 10:48:25 by llepesqu          #+#    #+#             */
+/*   Updated: 2025/12/03 13:32:07 by llepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "libft.h"
+#include <stddef.h>
 
-void	ft_putstr_fd(int fd, const char *s)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	write(fd, s, ft_strlen(s));
+	size_t	i;
+
+	if (s == NULL || f == NULL)
+		return ;
+	i = 0;
+	while (s[i])
+	{
+		f(i, &s[i]);
+		i++;
+	}
 }
