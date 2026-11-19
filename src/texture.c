@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
+/*   By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 14:40:53 by plepercq          #+#    #+#             */
-/*   Updated: 2026/10/15 15:16:23 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/11/19 18:14:25 by llepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,3 @@ void	tx_load(void *mlx, t_texture *tx, char *tx_path)
 	(void)tx;
 	(void)tx_path;
 }
-

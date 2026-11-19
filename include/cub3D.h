@@ -6,7 +6,7 @@
 /*   By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:25:23 by plepercq          #+#    #+#             */
-/*   Updated: 2026/11/14 07:36:07 by llepesqu         ###   ########.fr       */
+/*   Updated: 2026/11/19 18:10:11 by llepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@
 # define WIN_TITLE			"Cub3D"
 
 # define VELOCITY			2.0
-f, 
 # define ON_KEYDOWN			2
 # define ON_KEYUP			3
 
