@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
+/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 00:09:36 by pierre_lepe       #+#    #+#             */
-/*   Updated: 2026/11/06 00:54:46 by pierre_lepe      ###   ########.fr       */
+/*   Updated: 2026/11/23 18:14:44 by plepercq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_vec2	vec2(float x, float y)
 	return (vec2);
 }
 
-float	vec2_len(t_vec2 v)
+float	vec2_norm(t_vec2 v)
 {
 	return (sqrtf(pow(v.x, 2) + pow(v.y, 2)));
 }
@@ -46,8 +46,22 @@ t_vec2	vec2_unit(t_vec2 v)
 {
 	float	norm;
 
-	norm = vec2_len(v);
+	norm = vec2_norm(v);
 	return (vec2(v.x / norm, v.y / norm));
+}
+
+t_vec2	vec2_rotate(t_vec2 v, float rad)
+{
+	t_vec2	vr;
+
+	vr.x = v.x * cos(rad) - v.y * sin(rad);
+	vr.y = v.x * sin(rad) + v.y * cos(rad);
+	return (vr);
+}
+
+t_vec2	vec2_perpendicular(t_vec2 v)
+{
+	return (vec2(v.y, -v.x));
 }
 
 void	pvec2(t_vec2 v)

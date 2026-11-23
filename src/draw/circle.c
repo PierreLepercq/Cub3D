@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   circle.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
+/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 01:40:05 by pierre_lepe       #+#    #+#             */
-/*   Updated: 2026/11/02 03:23:03 by pierre_lepe      ###   ########.fr       */
+/*   Updated: 2026/11/23 17:51:57 by plepercq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	draw_circle_aa(t_frame f, t_vec2 pos, int r, int thickness, t_color c)
     {
         while(px.y <= pos.y + r + thickness)
         {
-            dist = vec2_len(vec2_sub(px, pos));
+            dist = vec2_norm(vec2_sub(px, pos));
 			alpha = (255 - (float)c.a) / 255;
 			alpha *= thickness + 0.5f - fabsf(dist - r);
 			if (alpha > 1)
@@ -106,7 +106,7 @@ void	draw_fillcircle_aa(t_frame f, t_vec2 pos, int r, t_color c)
     {
         while(px.y <= pos.y + r + 1)
         {
-            dist = vec2_len(vec2_sub(px, pos));
+            dist = vec2_norm(vec2_sub(px, pos));
             alpha = (r + 0.5 - dist - ( 2. / 2.));
             if (alpha > 1.0f)
                 alpha = 1.0f;

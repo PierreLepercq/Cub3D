@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rect.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
+/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 01:39:32 by pierre_lepe       #+#    #+#             */
-/*   Updated: 2026/11/02 02:56:19 by pierre_lepe      ###   ########.fr       */
+/*   Updated: 2026/11/23 18:44:33 by plepercq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@ void	draw_rect(t_frame f, t_vec2 pos, t_vec2 size, t_color c)
 
 void	draw_fillrect(t_frame f, t_vec2 pos, t_vec2 size, t_color c)
 {
-    int     y;
+	t_vec2	px;
 
-    y = 0;
-	while (y <= size.y)
+	px = vec2(0, 0);
+	while (px.y <= size.y)
 	{
-		draw_line(
-            f,
-            vec2(pos.x, pos.y + y),
-            vec2(pos.x + size.x, pos.y + y),
-            c
-        );
-		y++;
+		px.x = 0;
+		while (px.x <= size.x)
+		{
+			draw_pixel(f, vec2_add(pos, px), c);
+			px.x++;
+		}
+		px.y++;
 	}
 }

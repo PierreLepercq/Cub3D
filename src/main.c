@@ -6,7 +6,7 @@
 /*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:16:00 by plepercq          #+#    #+#             */
-/*   Updated: 2026/11/10 15:10:25 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/11/23 20:35:52 by plepercq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	draw_map(t_game *g)
 		{
 			ch = (int)(px.y / 100) * (WIN_WIDTH / 100) + (int)(px.x / 100);
 			if (MAP[ch] == '1')
-				draw_pixel(g->frame, px, argb(100, 255, 255, 255)); 
+				draw_pixel(g->frame, px, argb(0, 255, 255, 255)); 
 			px.x++;
 		}
 		px.y++;
@@ -98,6 +98,67 @@ void	draw_map(t_game *g)
 	{
 		draw_line(g->frame, vec2(px.x, 0), vec2(px.x, WIN_HEIGHT), argb(0, 55, 55, 55));
 		px.x += 100;
+	}
+}
+
+void	draw_cam(t_game *g)
+{
+	int		i;
+	int		scale;
+	t_vec2	ray;
+	t_vec2	plane_center;
+	t_vec2	plane_dir;
+
+	scale = 30;
+	plane_dir = vec2_perpendicular(g->player.dir);
+	plane_center = vec2_add(g->player.pos, g->player.dir);
+	draw_fillcircle_aa(
+		g->frame,
+		vec2_mult(g->player.pos, scale),
+		5,
+		argb(0, 255, 0, 0));
+	draw_line(
+		g->frame,
+		vec2_mult(g->player.pos, scale),
+		vec2_mult(plane_center, scale),
+		argb(0, 255, 0, 0));
+	draw_line(
+		g->frame,
+		vec2_mult(g->player.pos, scale),
+		vec2_mult(vec2_add(plane_center, plane_dir), scale),
+		argb(0, 255, 255, 255));
+	draw_line(
+		g->frame,
+		vec2_mult(g->player.pos, scale),
+		vec2_mult(vec2_sub(plane_center, plane_dir), scale),
+		argb(0, 255, 255, 255));
+	draw_line(
+		g->frame,
+		vec2_mult(vec2_add(plane_center, plane_dir), scale),
+		vec2_mult(vec2_sub(plane_center, plane_dir), scale),
+		argb(0, 255, 255, 255));
+
+	i = 0;
+	while (i <= 3)
+	{
+		ray = vec2_sub(plane_center, plane_dir);
+		draw_fillcircle_aa(
+			g->frame,
+			vec2_mult(ray, scale),
+			5,
+			argb(0, 0, 0, 255));
+		ray = vec2_add(ray, vec2_mult(plane_dir, i/3.));
+		draw_fillcircle_aa(
+			g->frame,
+			vec2_mult(ray, scale),
+			3,
+			argb(0, 0, 255, 255));
+		draw_line(
+			g->frame,
+			vec2_mult(g->player.pos, scale),
+			vec2_mult(ray, scale),
+			argb(0, 0, 255, 0));
+		i++;
 	}
 }
 
@@ -210,7 +271,10 @@ t_vec2	get_next_edges(t_vec2 pos, int16_t angle)
 
 	edges = angle_to_relative_pos(angle);
 	if (edges.x == -1 && !is_int(pos.x))
+	{
+		printf("1\n");
 		edges.x = 0;
+	}
 	if (edges.y == -1 && !is_int(pos.y))
 		edges.y = 0;
 	edges = vec2_add(pos, edges);
@@ -294,6 +358,16 @@ float	raycast(t_vec2 pos, int16_t angle)
 }
 */
 
+float	ang_to_rad(int	angle)
+{
+	return (angle * (M_PI / 180.));
+}
+
+int	rad_to_ang(float rad)
+{
+	return (rad * (180. / M_PI));
+}
+
 int	game_loop(void *game)
 {
 	t_game	*g;
@@ -305,21 +379,33 @@ int	game_loop(void *game)
 
 	g = game;
 
-	if (g->inputs.left)
-		g->player.angle -= 3;
-	if (g->inputs.right)
-		g->player.angle += 3;
+	draw_fillrect(
+		g->frame,
+		vec2(0, 0),
+		vec2(WIN_WIDTH, WIN_HEIGHT),
+		argb(0, 0, 0, 0));
 
-	printf("Angle : %i\n", g->player.angle % 360);
+	draw_map(g);
+	//draw_cam(g);
+
+	if (g->inputs.left)
+		g->player.angle += 1;
+	//g->player.dir = vec2_rotate(g->player.dir, -0.01);
+	if (g->inputs.right)
+		g->player.angle -= 1;
+	//g->player.dir = vec2_rotate(g->player.dir, 0.01);
+
+	//printf("Angle : %i\n", g->player.angle % 360);
 	rad = g->player.angle * (M_PI / 180.);
 	dir = vec2(cosf(rad), sinf(rad));
+	//dir = g->player.dir;
 	//pvec2(dir);
 
 	if (g->inputs.forward)
 		g->player.pos = vec2_add(g->player.pos, vec2_mult(dir, 0.1));
 	if (g->inputs.backward)
 		g->player.pos = vec2_add(g->player.pos, vec2_mult(dir, -0.1));
-	draw_fillrect(g->frame, vec2(0, 0), g->frame.size, argb(0, 0, 0, 0));
+	
 	draw_map(g);
 	pos = vec2_mult(g->player.pos, 100);
 	draw_line(
@@ -430,7 +516,9 @@ int	game_init(t_game *game, char *file_path)
 	if (!game->mlx)
 		return (ft_error("mlx initialization failed\n"));
 	game->player.pos = vec2(4, 4);
-	game->player.angle = -90;
+	game->player.dir = vec2(1, 0);
+	
+	game->player.angle = 0;
 	//game->map = ft_split(MAP);
 	return (mlx_window_init(game));
 }

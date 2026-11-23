@@ -6,7 +6,7 @@
 /*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 16:10:57 by plepercq          #+#    #+#             */
-/*   Updated: 2026/11/04 15:02:28 by plepercq         ###   ########.fr       */
+/*   Updated: 2026/11/23 18:57:25 by plepercq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ t_color	color_blend(t_color bg, t_color fg)
 {
 	t_color	mix;
 
+	if (fg.a == 0)
+		return (fg);
 	mix.a = 0;
 	mix.r = (fg.r * (255 - fg.a) + bg.r * fg.a) / 255;
     mix.g = (fg.g * (255 - fg.a) + bg.g * fg.a) / 255;

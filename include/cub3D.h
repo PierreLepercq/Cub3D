@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pierre_lepercq <pierre_lepercq@student.    +#+  +:+       +#+        */
+/*   By: plepercq <plepercq@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:25:23 by plepercq          #+#    #+#             */
-/*   Updated: 2026/11/08 13:30:07 by pierre_lepe      ###   ########.fr       */
+/*   Updated: 2026/11/23 17:46:08 by plepercq         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ typedef struct s_texture
 typedef struct s_player
 {
 	t_vec2		pos;
+	t_vec2		dir;
+	t_vec2		plane;
 	int16_t		angle;
 }				t_player;
 
