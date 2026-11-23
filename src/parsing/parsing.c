@@ -6,11 +6,12 @@
 /*   By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 13:46:58 by llepesqu          #+#    #+#             */
-/*   Updated: 2026/11/05 20:37:10 by llepesqu         ###   ########.fr       */
+/*   Updated: 2026/11/23 20:55:46 by llepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
 
 int check_extension(char *file)
 {
@@ -25,13 +26,59 @@ int check_extension(char *file)
 	return (SUCCESS);
 }
 
-int	open_file(char *file)
+int parse_identifier(char *line, t_params *params)
 {
-	int	fd;
+	static const char *id[ID_COUNT] = {"NO ", "SO ", "WE ", "EA "};
+	char *ptr;
+	int j;
 
+	ptr = ft_skip_spaces(line);
+	j = 0;
+	while (j < ID_COUNT)
+	{	
+		if (!ft_strncmp(ptr, id[j], 3))
+		{
+			ptr = ft_skip_spaces(ptr + 3); // skip "NO "
+			if (!params->walls[j].path)
+			{
+				params->walls[j].path = ft_strdup(ptr);
+				return (1);
+			}
+			else 
+				error;
+		}
+		j++;
+	}
+}
+
+char **open_file(char *file, t_params *params)
+{
+	char *line;
+	int fd;
+	int j;
+	
+	ft_bzero(params, sizeof(t_params));
 	fd = open(file, O_RDONLY);
 	ft_puterror(fd < 0, strerror(errno));
-	return (fd);
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break;
+		free(line);
+		//ft_puterror(true, "Wrong identifier parameters");
+	}
+	close(fd);
+}
+
+void parsing_wrapper(int nb, char *file)
+{
+	int fd;
+	
+	ft_puterror(nb != 2, "Incorrect number of arguments (expected 2)\nUsage : ./cub3D scene_description_file.cub");
+	ft_puterror(!check_extension(file), "Incorrect file\nUsage : ./cub3D scene_description_file.cub");
+	fd = open_file(file);
+	get_next_line(fd);	
 }
 
 // ------------------------------------
@@ -99,13 +146,3 @@ int	open_file(char *file)
 // }
 
 // ------------------------------------
-
-void parsing_wrapper(int nb, char *file)
-{
-	int fd;
-	
-	ft_puterror(nb != 2, "Incorrect number of arguments (expected 2)\nUsage : ./cub3D scene_description_file.cub");
-	ft_puterror(!check_extension(file), "Incorrect file\nUsage : ./cub3D scene_description_file.cub");
-	fd = open_file(file); // ft_puterror dans open_file
-	
-}

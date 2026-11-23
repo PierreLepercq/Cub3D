@@ -6,7 +6,7 @@
 /*   By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:25:23 by plepercq          #+#    #+#             */
-/*   Updated: 2026/11/19 19:00:19 by llepesqu         ###   ########.fr       */
+/*   Updated: 2026/11/23 20:04:03 by llepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,25 @@
 							 1000000001\n\
 							 1111111111"
 
-typedef struct s_params
-{
-	char	*map;
-	char	*floor;
-	char	*ceiling;
-	char	*wall_n;
-	char	*wall_s;
-	char	*wall_w;
-	char	*wall_e;
+// typedef struct s_params
+// {
+// 	char	*map;
+// 	char	*floor;
+// 	char	*ceiling;
+// 	char	*wall_n;
+// 	char	*wall_s;
+// 	char	*wall_w;
+// 	char	*wall_e;
 
-}	t_params;
+// }	t_params;
+
+enum Identifier {
+    NO, // vaut 0 par défaut
+    SO,  // vaut 1
+    WE,   // vaut 2
+	EA,
+	ID_COUNT
+};
 
 typedef struct s_texture
 {
@@ -83,6 +91,15 @@ typedef struct s_texture
 	int			height;
 	int			width;
 }				t_texture;
+
+typedef struct s_params
+{
+	char	*map;
+	char	*floor;
+	char	*ceiling;
+	t_texture	walls[4];
+
+}	t_params;
 
 typedef struct s_player
 {
