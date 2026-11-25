@@ -6,7 +6,7 @@
 #    By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/10/08 16:18:19 by plepercq          #+#    #+#              #
-#    Updated: 2026/11/05 16:46:02 by llepesqu         ###   ########.fr        #
+#    Updated: 2026/11/25 16:24:51 by llepesqu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,10 @@ MLX_FLAGS   = -L$(MLX_DIR) -lmlx -lX11 -lXext
 CMD_TEST	= ./$(NAME)
 LOG_FILE	= logs
 
+UNIT_TEST	= unitbin
+CMD_UNIT	= ./$(UNIT_TEST)
+
+
 #	Rules
 all: $(MLX_DIR) $(NAME)
 	$(CC) $(CFLAGS) $(INCS) -o $(NAME) $(OBJS) $(LINKS)
@@ -56,7 +60,7 @@ clean:
 	@echo -e "- ${_GREEN}Clean${_END}\n"
 
 fclean:
-	@$(RM) -vf $(NAME) $(LOG_FILE)
+	@$(RM) -vf $(NAME) $(UNIT_TEST) $(LOG_FILE)
 	@$(RM) -vf $(OBJS)
 	@$(RM) -vdrf $(DIR_OBJ)
 	# @$(RM) -vrf $(MLX_DIR)
@@ -75,6 +79,16 @@ test: fclean $(NAME)
 	# @valgrind -q $(CMD_TEST) 2>&1 | tee $(LOG_FILE)
 	$(CMD_TEST)
 
+unit: $(MLX_DIR) $(NAME)
+	$(CC) tests/main.c $(CFLAGS) -g $(INCS) -o $(UNIT_TEST) $(filter-out $(DIR_OBJ)/main.o, $(OBJS)) $(LINKS)
+	@echo -e "- ${_CYAN}link ${_WHITE}: ${_GREEN}OK${_END}\n"
+	@echo -e "> ${_GREEN}Program name ${_WHITE}: ${_BOLD}$(UNIT_TEST)${_END}\n"
+	@echo -e "- ${_BOLD}${_PURPLE}Unit test ${_END}: $(CMD_UNIT)"
+	@$(RM) -f vgcore.*
+	# @valgrind -q $(CMD_UNIT) 2>&1 | tee $(LOG_FILE)
+	$(CMD_UNIT)
+
+
 $(NAME): $(OBJS)
 	@echo -e "- ${_CYAN}compilation and assembly ${_WHITE}: ${_GREEN}OK${_END}\n"
 
@@ -86,4 +100,4 @@ $(DIR_OBJ)/%.o: $(DIR_SRC)/%.c
 	@mkdir -vp $(dir $@)
 	$(CC) $(CFLAGS) $(INCS) -c $^ -o $@
 
-.PHONY: all clean fclean re good
+.PHONY: all clean fclean re good unit

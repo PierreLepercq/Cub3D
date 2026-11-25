@@ -6,7 +6,7 @@
 /*   By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 10:38:49 by llepesqu          #+#    #+#             */
-/*   Updated: 2026/01/18 10:49:09 by llepesqu         ###   ########.fr       */
+/*   Updated: 2026/11/25 16:05:46 by llepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@
 # include <stddef.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "libft.h"
 
 char	*get_next_line(int fd);
-size_t	ft_strlen(const char *str);
-char	*ft_strjoin(char const *s1, char const *s2);
+// size_t	ft_strlen(const char *str);
+// char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strndup(char *src, unsigned int n);
 int		ft_index_of_char(char *base, char c);
 void	update_stash(char **stash, char *buf, int size);

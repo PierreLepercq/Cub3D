@@ -6,7 +6,7 @@
 /*   By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 13:46:58 by llepesqu          #+#    #+#             */
-/*   Updated: 2026/11/23 20:55:46 by llepesqu         ###   ########.fr       */
+/*   Updated: 2026/11/25 16:31:39 by llepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,42 +44,48 @@ int parse_identifier(char *line, t_params *params)
 				params->walls[j].path = ft_strdup(ptr);
 				return (1);
 			}
-			else 
-				error;
+			else
+			{
+				ft_error((char *)id[j]);
+				ft_putendl_fd("has already been assigned.", STDERR_FILENO);
+				return (FAILURE);
+			}
 		}
 		j++;
 	}
+	return (0);
 }
 
-char **open_file(char *file, t_params *params)
-{
-	char *line;
-	int fd;
-	int j;
+// char **open_file(char *file, t_params *params)
+// {
+// 	char *line;
+// 	int fd;
+// 	int j;
 	
-	ft_bzero(params, sizeof(t_params));
-	fd = open(file, O_RDONLY);
-	ft_puterror(fd < 0, strerror(errno));
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (!line)
-			break;
-		free(line);
-		//ft_puterror(true, "Wrong identifier parameters");
-	}
-	close(fd);
-}
+// 	ft_bzero(params, sizeof(params));
+// 	fd = open(file, O_RDONLY);
+// 	ft_puterror(fd < 0, strerror(errno));
+// 	while (1)
+// 	{
+// 		line = get_next_line(fd);
+// 		if (!line)
+// 			break;
+// 		free(line);
+// 		//ft_puterror(true, "Wrong identifier parameters");
+// 	}
+// 	close(fd);
+// }
 
-void parsing_wrapper(int nb, char *file)
-{
-	int fd;
+// void parsing_wrapper(int nb, char *file)
+// {
+// 	int fd;
 	
-	ft_puterror(nb != 2, "Incorrect number of arguments (expected 2)\nUsage : ./cub3D scene_description_file.cub");
-	ft_puterror(!check_extension(file), "Incorrect file\nUsage : ./cub3D scene_description_file.cub");
-	fd = open_file(file);
-	get_next_line(fd);	
-}
+// 	fd = 0;
+// 	ft_puterror(nb != 2, "Incorrect number of arguments (expected 2)\nUsage : ./cub3D scene_description_file.cub");
+// 	ft_puterror(!check_extension(file), "Incorrect file\nUsage : ./cub3D scene_description_file.cub");
+// 	fd = open_file(file);
+// 	get_next_line(fd);	
+// }
 
 // ------------------------------------
 

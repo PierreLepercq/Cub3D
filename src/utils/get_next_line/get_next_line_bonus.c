@@ -6,23 +6,23 @@
 /*   By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 10:38:32 by llepesqu          #+#    #+#             */
-/*   Updated: 2026/01/19 10:51:19 by rapohlen         ###   ########.fr       */
+/*   Updated: 2026/11/25 16:08:21 by llepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
+// size_t	ft_strlen(const char *str)
+// {
+// 	size_t	i;
 
-	if (!str)
-		return (0);
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
+// 	if (!str)
+// 		return (0);
+// 	i = 0;
+// 	while (str[i])
+// 		i++;
+// 	return (i);
+// }
 
 void	update_stash(char **stash, char *buf, int size)
 {
