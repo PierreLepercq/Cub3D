@@ -6,7 +6,7 @@
 /*   By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/16 13:46:58 by llepesqu          #+#    #+#             */
-/*   Updated: 2026/11/25 16:31:39 by llepesqu         ###   ########.fr       */
+/*   Updated: 2026/11/26 21:09:54 by llepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int check_extension(char *file)
 
 int parse_identifier(char *line, t_params *params)
 {
-	static const char *id[ID_COUNT] = {"NO ", "SO ", "WE ", "EA "};
+	static const char *id[ID_COUNT] = {"NO", "SO", "WE", "EA"};
 	char *ptr;
 	int j;
 
@@ -36,13 +36,12 @@ int parse_identifier(char *line, t_params *params)
 	j = 0;
 	while (j < ID_COUNT)
 	{	
-		if (!ft_strncmp(ptr, id[j], 3))
+		if (!ft_strncmp(ptr, id[j], ft_strlen(id[j])) && ft_isspace(*(ptr + ft_strlen(id[j]))))
 		{
-			ptr = ft_skip_spaces(ptr + 3); // skip "NO "
 			if (!params->walls[j].path)
 			{
-				params->walls[j].path = ft_strdup(ptr);
-				return (1);
+				params->walls[j].path = ft_strtrim(ptr + ft_strlen(id[j]), " \t\n");
+				return (SUCCESS);
 			}
 			else
 			{
@@ -53,7 +52,53 @@ int parse_identifier(char *line, t_params *params)
 		}
 		j++;
 	}
-	return (0);
+	return (FAILURE);
+}
+
+int parse_color(char *line, t_params *params)
+{
+	static const char *colors[COLOR_COUNT] = {"F", "C"};
+	bool set[COLOR_COUNT];
+	char *ptr;
+	char **tmp;
+	int j;
+	int i;
+
+	ptr = ft_skip_spaces(line);
+	j = 0;
+	while (j < COLOR_COUNT)
+	{	
+		if (!ft_strncmp(ptr, colors[j], ft_strlen(colors[j])) && ft_isspace(*(ptr + ft_strlen(colors[j]))))
+		{
+			if (!set[j])
+			{
+				set[j] = 1;
+				ptr = ft_skip_spaces(ptr + ft_strlen(colors[j]));
+				tmp = ft_split(ptr, ',');
+				i = 0;
+				while (tmp[i])
+					i++;
+				if (i > 2)
+				{
+					ft_error((char *)colors[j]);
+					ft_putendl_fd("color format is non-rgb", STDERR_FILENO);
+					return (FAILURE);
+				}
+				params->colors->r = ft_atoi(tmp[0]);
+				params->colors->g = ft_atoi(tmp[1]);
+				params->colors->b = ft_atoi(tmp[2]);
+				return (SUCCESS);
+			}
+			else
+			{
+				ft_error((char *)colors[j]);
+				ft_putendl_fd("colors have already been assigned.", STDERR_FILENO);
+				return (FAILURE);
+			}
+		}
+		j++;
+	}
+	return (FAILURE);
 }
 
 // char **open_file(char *file, t_params *params)

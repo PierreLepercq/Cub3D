@@ -6,7 +6,7 @@
 /*   By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:16:00 by plepercq          #+#    #+#             */
-/*   Updated: 2026/11/14 07:35:33 by llepesqu         ###   ########.fr       */
+/*   Updated: 2026/11/26 19:27:35 by llepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 // ------------------------------------
 
-int	game_exit(t_game *game)
+int	game_exit(t_game *game) // to be deprecated see ft_free_game in ft_free.c
 {
 	if (game->frame.img)
 		mlx_destroy_image(game->mlx,game->frame.img);

@@ -6,7 +6,7 @@
 /*   By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 13:12:53 by llepesqu          #+#    #+#             */
-/*   Updated: 2026/11/19 19:14:14 by llepesqu         ###   ########.fr       */
+/*   Updated: 2026/11/26 19:47:10 by llepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,7 @@ void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
+int					ft_isspace(char c);
+void				ft_free_tab(char **tab);
 
 #endif

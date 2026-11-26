@@ -6,12 +6,12 @@
 /*   By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/05 17:13:20 by llepesqu          #+#    #+#             */
-/*   Updated: 2026/11/23 20:42:29 by llepesqu         ###   ########.fr       */
+/*   Updated: 2026/11/26 20:03:52 by llepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILIS_H
-#define UTILIS_H
+#ifndef UTILS_H
+#define UTILS_H
 
 // Standard C Libraries
 // # include <unistd.h>

@@ -6,7 +6,7 @@
 /*   By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/08 16:25:23 by plepercq          #+#    #+#             */
-/*   Updated: 2026/11/23 20:04:03 by llepesqu         ###   ########.fr       */
+/*   Updated: 2026/11/26 20:36:21 by llepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,12 @@ enum Identifier {
 	ID_COUNT
 };
 
+enum Surfaces {
+	F,
+	C,
+	COLOR_COUNT
+};
+
 typedef struct s_texture
 {
 	char		*path;
@@ -94,10 +100,9 @@ typedef struct s_texture
 
 typedef struct s_params
 {
-	char	*map;
-	char	*floor;
-	char	*ceiling;
-	t_texture	walls[4];
+	char		**map;
+	t_color		colors[COLOR_COUNT];
+	t_texture	walls[ID_COUNT];
 
 }	t_params;
 
@@ -122,19 +127,14 @@ typedef struct s_game
 	void		*mlx;
 	void		*mlx_win;
 	int			win;
-	char		**map;
-	char		*floor;
-	char		*ceiling;
-	char		*wall_n;
-	char		*wall_s;
-	char		*wall_w;
-	char		*wall_e;
-	char		**textures;
+	t_params	params;
 	t_player	player;
 	t_frame		frame;
 	t_inputs	inputs;
 }	t_game;
 
-
+void ft_free_texture(void *mlx, t_texture *texture);
+void ft_free_param(void *mlx, t_params *param);
+void ft_free_game(t_game *game);
 
 #endif

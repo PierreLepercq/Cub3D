@@ -6,7 +6,7 @@
 /*   By: llepesqu <llepesqu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 15:13:40 by llepesqu          #+#    #+#             */
-/*   Updated: 2025/12/03 16:06:28 by llepesqu         ###   ########.fr       */
+/*   Updated: 2026/11/25 18:01:47 by llepesqu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	ft_char_is_numeric(char c)
 	return (0);
 }
 
-static int	ft_isspace(char c)
+int	ft_isspace(char c)
 {
 	if ((c >= 9 && c <= 13) || c == ' ')
 		return (1);
